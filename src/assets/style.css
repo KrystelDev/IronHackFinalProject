@@ -1,0 +1,38 @@
+/************** EN TODOS LOS SCREENS (ha no ser que se diga lo contario) **************/
+:root {
+  --colorWhite: #ffffff;
+  --colorBlack: #000000;
+  --colorRed: red;
+  --fontSize-sm: 16px;
+  --fontFamily: "Arial, Helvetica, sans-serif";
+  --fontTitle: "Arial";
+  --fontBody: "Helvetica";
+}
+
+/* SignIn Component */
+
+h1 {
+  color: var(--colorRed);
+}
+
+/* SignUp Component */
+
+/* Home view */
+
+/* Account View */
+
+/********************************* TABLETA *********************************/
+
+@media (min-width: 768px) {
+  h1 {
+    color: blue;
+  }
+}
+
+/********************************* PC *********************************/
+
+@media (min-width: 992px) {
+  h1 {
+    color: green;
+  }
+}
