@@ -18,10 +18,10 @@
     <div>
       <ul>
         <li class="log-out-welcome">
-          <p>Welcome, user</p>
+          <p>Welcome, {{ getUser.email}}</p>
         </li>
         <li>
-          <button @click="signOut" class="button">Log out</button>
+          <button @click="signOut({getUser})" class="button">Log out</button>
         </li>
       </ul>
     </div>
@@ -43,18 +43,20 @@ const buttonText = "Todo app";
 // const getUser = computed(() => useUserStore().user);
 const getUser = useUserStore().user;
 
+//Prepar el nombre del mail
+// const getUserNameEmail
+
 // constant that calls user email from the useUSerStore
 const userEmail = getUser.email;
 
 // async function that calls the signOut method from the useUserStore and pushes the user back to the Auth view.
 const redirect = useRouter();
 
-const signOut = async () => {
-  try{
-    // call the user store and send the users info to backend to signOut
-    // then redirect user to the homeView
-  } catch (error) {}
-};
+// Arrow function to Signin user to supaBase
+async function signOut() {
+  await useUserStore().signOut();
+  redirect.push({ path: "/auth/login" });
+}
 
 </script>
 

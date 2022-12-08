@@ -1,25 +1,75 @@
 <!-- COMPONENTE BOILERPLATE -->
- 
-  <template>
 
+<template>
   <div class="container">
-    <h3 class="header-title">Log In to ToDo App</h3>
-    <p class="header-subtitle">Estamos en la ruta de login. Aquí deberíais crear un form con la lógica correspondiente para que este permita al usuario loguearse con su email y su contraseña. Miraros la lógica de SignUp si necesitáis inspiración :)</p>
-    <p>Dont have an account? <PersonalRouter :route="route" :buttonText="buttonText" class="sign-up-link"/></p>
+    <form @submit.prevent="signIn" class="form-sign-in">
+      <div class="form">
+        <div class="form-input">
+          <label class="input-field-label">E-mail</label>
+          <input
+            type="email"
+            class="input-field"
+            placeholder="example@gmail.com"
+            id="email"
+            v-model="email"
+            required
+          />
+        </div>
+        <div class="form-input">
+          <label class="input-field-label">Password</label>
+          <input
+            type="password"
+            class="input-field"
+            placeholder="**********"
+            id="password"
+            v-model="password"
+            required
+          />
+        </div>
+        <button class="button" type="submit">Entrar</button>
+        <p>
+          Have an account?
+          <PersonalRouter
+            :route="route"
+            :buttonText="buttonText"
+            class="sign-up-link"
+            @click="signIn()"
+          />
+        </p>
+      </div>
+    </form>
   </div>
-
 </template>
 
 <script setup>
+import { ref, computed } from "vue";
 import PersonalRouter from "./PersonalRouter.vue";
+import { supabase } from "../supabase";
+import { useRouter } from "vue-router";
+import { useUserStore } from "../stores/user";
+import { storeToRefs } from "pinia";
 
-// Route Variables
+// iniciar Variables
 const route = "/auth/signup";
 const buttonText = "Sign Up";
+const email = ref("");
+const password = ref("");
+const redirect = useRouter();
+const errorMsg = ref("");
 
 // Arrow function to Signin user to supaBase
 const signIn = async () => {
-  try {} catch (error) {}
+  try {
+    await useUserStore().signIn(email.value, password.value);
+    redirect.push({ path: "/" });
+  } catch (error) {
+    errorMsg.value = error.message;
+    setTimeout(() => {
+      errorMsg.value = null;
+    }, 5000);
+    return;
+  }
+  errorMsg.value = "error";
 };
 </script>
 
