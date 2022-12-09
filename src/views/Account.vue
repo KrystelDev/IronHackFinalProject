@@ -9,28 +9,51 @@
     "
     alt="Profile picture"
   />
+  <div v-show="editPerfil">
+    <label for="name">Nombre</label>
+    <input type="text" v-model="username" />
+    <label for="avatar">Avatar</label>
+    <input type="text" v-model="avatar_url" />
+    <button @click="changePerfil">Save</button>
+  </div>
+  <button @click="changeEditPerfil">Edit</button>
 </template>
 
 <script setup>
-import { supabase } from "../supabase";
-import { onMounted, reactive, ref, toRefs } from "vue";
-import { useProfilesStore } from "../stores/profile";
+import { onMounted, reactive, ref, toRefs, watch, watchEffect } from "vue";
 import Nav from "../components/Nav.vue";
 import { useUserStore } from "../stores/user";
 
-const profileStore = useProfilesStore();
+const userStore = useUserStore();
 
 // Variable para guardar el perfil de supabase
-const profile = ref({});
+const profile = ref({
+  avatar_url: "",
+  created_at: "",
+  name: "",
+  user_id: "",
+  username: "",
+  website: "",
+});
 const username = ref(null);
 const avatar_url = ref(null);
 
 // PREFILE
 const getProfile = async () => {
-  profile.value = await profileStore.fetchProfile();
+  await userStore.fetchUser();
+  profile.value = userStore.profile;
+  console.log(profile.value);
   username.value = profile.value.username;
+  avatar_url.value = profile.value.avatar_url;
 };
 getProfile();
+
+//Editar Perfil
+let editPerfil = ref(false);
+
+const changeEditPerfil = () => {
+  editPerfil.value = !editPerfil.value;
+};
 
 /*
 const getProfiles = async () => {

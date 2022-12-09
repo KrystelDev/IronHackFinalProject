@@ -10,11 +10,15 @@ export const useUserStore = defineStore("user", {
       const user = await supabase.auth.user();
       if (user) {
         this.user = user;
+        console.log("cargo perfil del usuario");
+        console.log(this.user.id);
         const { data: profile } = await supabase
-          .from("profiles")
+          .from("profile")
           .select("*")
-          .match({ user_id: this.user.id });
-
+          .eq("user_id", this.user.id);
+        // .match({ user_id: this.user.id });
+        console.log("Perfil del usuario: ");
+        console.log(profile);
         if (profile) this.profile = profile[0];
 
         // Funciona, pero no se espera a imprimir despues de que se haya creado
@@ -52,7 +56,7 @@ export const useUserStore = defineStore("user", {
       if (user) {
         this.user = user;
         console.log(this.user);
-        const { data: profile } = await supabase.from("profiles").insert([
+        const { data: profile } = await supabase.from("profile").insert([
           {
             user_id: this.user.id,
             email: email,
@@ -72,14 +76,16 @@ export const useUserStore = defineStore("user", {
           shouldCreateUser: false,
         }
       );
-      if (error) throw error;
+      if (error) {
+        throw error;
+        alert("Check your email for the login link!");
+      }
       if (user) {
         this.user = user;
         const { data: profile } = await supabase
-          .from("profiles")
+          .from("profile")
           .select()
           .match({ user_id: this.user.id });
-
         if (profile) this.profile = profile[0];
         console.log("profile in store: ", profile);
       }
