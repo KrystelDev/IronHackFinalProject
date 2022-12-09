@@ -95,6 +95,20 @@ export const useUserStore = defineStore("user", {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
     },
+
+    // Prefil Editar
+    async changeProfiles(username, avatar_url, id) {
+      console.log(username + " " + avatar_url + " " + id);
+      const { data, error } = await supabase
+        .from("profile")
+        .update({
+          username: username,
+          avatar_url: avatar_url,
+        })
+        .match({
+          user_id: id,
+        });
+    },
   },
 
   persist: {
