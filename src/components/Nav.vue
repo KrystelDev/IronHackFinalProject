@@ -7,7 +7,7 @@
       <ul>
         <li>
           <p>Welcome,</p>
-          <router-link to="/account">{{ getUSerNameEmail }}</router-link>
+          <router-link to="/account">{{ props.username }}</router-link>
         </li>
         <li>
           <button @click="signOut({ getUser })">Log out</button>
@@ -18,28 +18,57 @@
 </template>
 
 <script setup>
-// import PersonalRouter from "./PersonalRouter.vue";
-import { useUserStore } from "../stores/user";
-import { computed } from "vue";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 
-//constant to save a variable that will hold the use router method
-const route = "/";
-const buttonText = "Todo app";
+const props = defineProps({
+  username: String,
+});
 
-// constant to save a variable that will get the user from store with a computed function imported from vue
-// const getUser = computed(() => useUserStore().user);
-const getUser = useUserStore().user;
-const getUserEmail = getUser.email;
-const indexArroba = getUser.email.indexOf("@", 1);
-const getUSerNameEmail = getUserEmail.slice(0, indexArroba);
+// // Conseguir nombre del email:
+// const getUser = useUserStore().user;
+// const getUserEmail = getUser.email;
+// const indexArroba = getUser.email.indexOf("@", 1);
+// const getUSerNameEmail = getUserEmail.slice(0, indexArroba);
 
-// const getName = ref("");
+// // Conseguir nombre real del usuario:
+// const userStore = useUserStore();
 
-// if (useUserStore().profile.username) {
-//   getName.value = useUserStore().profile.username;
-// }
+// // Variable para guardar el perfil de supabase
+// const profile = ref({
+//   avatar_url: "",
+//   created_at: "",
+//   name: "",
+//   user_id: "",
+//   username: "",
+//   website: "",
+// });
+// const username = ref(null);
+// const avatar_url = ref(null);
+// const user_id = ref(null);
+
+// // PREFILE
+// const getProfile = async () => {
+//   // Hago una llamada para que no vaya más rapido que el primer fetchUser de App.vue
+//   await userStore.fetchUser();
+//   // Guardo el perfil en una constante:
+//   profile.value = userStore.profile;
+
+//   // Cuando se registra un user no tiene nombre.
+//   //Si ya ha editado el nombre vacio:
+//   if (profile.value.username) {
+//     username.value = profile.value.username;
+//   } else {
+//     // Si aun no ha registrado un nombre:
+//     const getUser = useUserStore().user;
+//     const getUserEmail = getUser.email;
+//     const indexArroba = getUser.email.indexOf("@", 1);
+//     username.value = getUserEmail.slice(0, indexArroba);
+//   }
+//   // avatar_url.value = profile.value.avatar_url;
+//   // user_id.value = profile.value.user_id;
+// };
+// getProfile();
 
 // async function that calls the signOut method from the useUserStore and pushes the user back to the Auth view.
 const redirect = useRouter();

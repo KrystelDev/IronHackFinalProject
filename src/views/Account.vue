@@ -1,5 +1,5 @@
 <template>
-  <Nav />
+  <Nav :username="username" />
   <h1>Name: {{ username }}</h1>
   <img
     :src="
