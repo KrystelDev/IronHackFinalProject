@@ -10,7 +10,7 @@
           <router-link to="/account">{{ props.username }}</router-link>
         </li>
         <li>
-          <button @click="signOut({ getUser })">Log out</button>
+          <button @click="signOut()">Log out</button>
         </li>
       </ul>
     </div>
@@ -20,19 +20,31 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
+import { useUserStore } from "../stores/user";
 
 const props = defineProps({
   username: String,
 });
-
 // async function that calls the signOut method from the useUserStore and pushes the user back to the Auth view.
 const redirect = useRouter();
 
 // Arrow function to Signin user to supaBase
-async function signOut() {
-  await useUserStore().signOut();
-  redirect.push({ path: "/auth/login" });
-}
+const signOut = async () => {
+  try {
+    // calls the user store and send the users info to backend to logIn
+    await useUserStore().signOut();
+    // redirects user to the singin
+    redirect.push({ path: "/auth/login" });
+  } catch (error) {
+    // displays error message
+    errorMsg.value = error.message;
+    // hides error message
+    setTimeout(() => {
+      errorMsg.value = null;
+    }, 5000);
+  }
+  return;
+};
 </script>
 
 <style>
