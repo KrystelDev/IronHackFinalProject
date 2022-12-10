@@ -1,14 +1,118 @@
 <template>
   <div class="wrapper">
     <Nav />
+
+    <main>
+      <div id="progressBar">
+        <div class="container">
+          <progress
+            class="progress is-primary"
+            :value="tasksCompleteLength"
+            :max="tasksLength"
+          ></progress>
+          {{ tasksProgreso }}% completado
+        </div>
+      </div>
+      <div class="padre">
+        <div class="skill">
+          <div class="outer">
+            <div class="inner">
+              <div id="number">{{ tasksProgreso }}%</div>
+            </div>
+          </div>
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            version="1.1"
+            width="160px"
+            height="160px"
+          >
+            <defs>
+              <linearGradient id="GradientColor">
+                <stop offset="0%" stop-color="#DA22FF" />
+                <stop offset="100%" stop-color="#9733EE" />
+              </linearGradient>
+            </defs>
+            <circle
+              cx="80"
+              cy="80"
+              r="70"
+              stroke-linecap="round"
+              :stroke-dashoffset="progresoConversor"
+            />
+          </svg>
+        </div>
+      </div>
+      <div>
+        {{ tasks }}
+      </div>
+    </main>
+
+    <footer></footer>
   </div>
 </template>
 
 <script setup>
 import Nav from "../components/Nav.vue";
+import { useTaskStore } from "../stores/task";
+import { reactive, ref } from "vue";
+
+const taskStore = useTaskStore();
+// Variable para guardar las tareas de supabase
+const tasks = ref([]);
+const tasksLength = ref(0);
+let tasksComplete = reactive([]);
+let count = -1;
+const tasksCompleteLength = ref(0);
+const tasksProgreso = ref(0);
+const progresoConversor = ref(0);
+
+// Creamos una función que conecte a la store para conseguir las tareas de supabase y trabajar con ellas:
+const getTasks = async () => {
+  tasks.value = await taskStore.fetchTasks();
+  tasksLength.value = tasks.value.length;
+  tasksComplete = tasks.value.filter((task) => {
+    if (task.is_complete == true) {
+      count += 1;
+      tasksComplete[count] = task;
+      //Vue2.set(tasksIncomplete, count, task);
+      console.log(task.is_complete);
+      console.log(task);
+      console.log(tasksComplete);
+    }
+    tasksCompleteLength.value = tasksComplete.length;
+  });
+  tasksProgreso.value = (
+    (tasksCompleteLength.value / tasksLength.value) *
+    100
+  ).toFixed(2);
+  console.log(tasksLength.value);
+  console.log(tasksCompleteLength.value);
+  console.log(tasksProgreso.value);
+  conversor();
+};
+getTasks();
+
+// More info conversor -> https://stackoverflow.com/questions/70787435/convert-range-0-5-1-to-output-range-10-with-javascript
+
+// rango antigo es el percentatge
+// rango destino es de 0 a 450
+
+// rango destino inicio + ()
+const conversor = () => {
+  progresoConversor.value =
+    450 + ((tasksProgreso.value - 0) * (0 - 450)) / (100 - 0);
+};
 </script>
 
-<style></style>
+<style>
+/* Progress Circular, falta transición */
+/* @keyframes anim {
+    100% {
+      stroke-dashoffset: progresoConversor;
+    }
+  } */
+</style>
 
 <!-- 
 **Hints**
