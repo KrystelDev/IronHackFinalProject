@@ -10,15 +10,10 @@ export const useUserStore = defineStore("user", {
       const user = await supabase.auth.user();
       if (user) {
         this.user = user;
-        console.log("cargo perfil del usuario");
-        console.log(this.user.id);
         const { data: profile } = await supabase
           .from("profile")
           .select("*")
           .eq("user_id", this.user.id);
-        // .match({ user_id: this.user.id });
-        console.log("Perfil del usuario: ");
-        console.log(profile);
         if (profile) this.profile = profile[0];
 
         // Funciona, pero no se espera a imprimir despues de que se haya creado
@@ -55,7 +50,6 @@ export const useUserStore = defineStore("user", {
       if (error) throw error;
       if (user) {
         this.user = user;
-        console.log(this.user);
         const { data: profile } = await supabase.from("profile").insert([
           {
             user_id: this.user.id,
@@ -66,7 +60,6 @@ export const useUserStore = defineStore("user", {
     },
 
     async signIn(email, password) {
-      console.log("entrando...");
       const { user, error } = await supabase.auth.signIn(
         {
           email: email,
@@ -87,7 +80,6 @@ export const useUserStore = defineStore("user", {
           .select()
           .match({ user_id: this.user.id });
         if (profile) this.profile = profile[0];
-        console.log("profile in store: ", profile);
       }
     },
 
@@ -98,7 +90,6 @@ export const useUserStore = defineStore("user", {
 
     // Prefil Editar
     async changeProfiles(username, avatar_url, id) {
-      console.log(username + " " + avatar_url + " " + id);
       const { data, error } = await supabase
         .from("profile")
         .update({

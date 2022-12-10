@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import Nav from "../components/Nav.vue";
 import { useUserStore } from "../stores/user";
 
@@ -44,8 +44,6 @@ const getProfile = async () => {
   await userStore.fetchUser();
   profile.value = userStore.profile;
 
-  console.log(profile.value);
-
   username.value = profile.value.username;
   avatar_url.value = profile.value.avatar_url;
   user_id.value = profile.value.user_id;
@@ -67,48 +65,6 @@ const changePerfil = async () => {
     user_id.value
   );
 };
-
-/*
-const getProfiles = async () => {
-  profiles.value = await profileStore.fetchProfiles();
-};
-//getProfiles();
-
-async function getProfile() {
-  console.log("getProfile:");
-  console.log(profiles.value);
-  // console.log(profiles.value);
-  // profiles.value = await profileStore.fetchProfiles();
-
-  username.value = await profiles.value.username;
-  avatar_url.value = await profiles.value;
-  console.log(profiles.value);
-  getProfiles();
-}
-*/
-
-// const loading = ref(false);
-// const website = ref(null);
-
-onMounted(() => {
-  //getProfile();
-});
-
-// PREFILE
-// const getProfiles = async () => {
-//   profiles.value = await profileStore.fetchProfiles().id;
-// };
-// getProfiles();
-
-// async function getProfile() {
-//   console.log(profiles.value);
-//   // console.log(profiles.value);
-//   // profiles.value = await profileStore.fetchProfiles();
-
-//   username.value = await profileStore.username;
-//   avatar_url.value = await profileStore.avatar_url;
-// }
-// getProfile();
 </script>
 
 <style>

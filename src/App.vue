@@ -18,7 +18,6 @@ const { user } = storeToRefs(userStore);
 onMounted(async () => {
   const appReady = ref(null);
   try {
-    console.log("llamo a fetch user");
     await userStore.fetchUser();
     // here we call fetch user
     if (!user.value) {
