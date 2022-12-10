@@ -59,6 +59,14 @@ const props = defineProps({
   avatar_url: String,
   progresoConversor: Number,
 });
+
+// TO DO
+// Limpiar aviso de consola . No le gusta el typeof tasksProgresso, sale como Number, lo recibe como Number, en algún punto lo detecta como string.
+// [Vue warn]: Invalid prop: type check failed for prop "tasksProgreso". Expected Number with value 66.67, got String with value "66.67".
+// at <Progreso tasksCompleteLength=2 tasksLength=3 tasksProgreso="66.67"  ... >
+// at <Home onVnodeUnmounted=fn<onVnodeUnmounted> ref=Ref< Proxy {__v_skip: true} > >
+// at <RouterView>
+// at <App>
 </script>
 
 <style></style>
