@@ -28,12 +28,12 @@ const props = defineProps({
 // async function that calls the signOut method from the useUserStore and pushes the user back to the Auth view.
 const redirect = useRouter();
 
-// Arrow function to Signin user to supaBase
+// Arrow function to Signout user to supaBase
 const signOut = async () => {
   try {
-    // calls the user store and send the users info to backend to logIn
+    // calls the user store and send the users info to backend to logOut
     await useUserStore().signOut();
-    // redirects user to the singin
+    // redirects user to the singup
     redirect.push({ path: "/auth/login" });
   } catch (error) {
     // displays error message
