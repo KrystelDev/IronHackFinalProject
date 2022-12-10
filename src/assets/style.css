@@ -52,6 +52,8 @@ h1 {
 }
 
 .inner {
+  display: flex;
+  flex-direction: column;
   height: 120px;
   width: 120px;
   border-radius: 50%;
@@ -82,6 +84,11 @@ svg {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.avatarHomeMobile {
+  width: 80px;
+  border-radius: 50%;
 }
 
 /* Account View */

@@ -36,10 +36,6 @@ async function signOut() {
 </script>
 
 <style>
-.navbar-img {
-  width: 90px;
-}
-
 nav {
   background-color: lightgray;
   display: flex;
