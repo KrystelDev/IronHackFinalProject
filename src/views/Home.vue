@@ -1,68 +1,34 @@
 <template>
   <div class="wrapper">
     <Nav :username="username" />
-
     <main>
-      <div id="progressBar">
-        <div class="container">
-          <progress
-            class="progress is-primary"
-            :value="tasksCompleteLength"
-            :max="tasksLength"
-          ></progress>
-          {{ tasksProgreso }}% completado
-        </div>
-      </div>
-      <div class="padre">
-        <div class="skill">
-          <div class="outer">
-            <div class="inner">
-              <img
-                class="avatarHomeMobile"
-                :src="
-                  avatar_url
-                    ? avatar_url
-                    : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'
-                "
-                alt="Profile picture"
-              />
-              <div id="number">{{ tasksProgreso }}%</div>
-            </div>
-          </div>
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            version="1.1"
-            width="160px"
-            height="160px"
-          >
-            <defs>
-              <linearGradient id="GradientColor">
-                <stop offset="0%" stop-color="#DA22FF" />
-                <stop offset="100%" stop-color="#9733EE" />
-              </linearGradient>
-            </defs>
-            <circle
-              cx="80"
-              cy="80"
-              r="70"
-              stroke-linecap="round"
-              :stroke-dashoffset="progresoConversor"
-            />
-          </svg>
-        </div>
+      <h2>Tu progreso:</h2>
+      <Progreso
+        :tasksCompleteLength="tasksCompleteLength"
+        :tasksLength="tasksLength"
+        :tasksProgreso="tasksProgreso"
+        :avatar_url="avatar_url"
+        :progresoConversor="progresoConversor"
+      />
+      <div>
+        <TaskPendientes :tasks="tasks" />
       </div>
       <div>
+        <h2>Consejos:</h2>
         {{ tasks }}
       </div>
     </main>
 
-    <footer></footer>
+    <footer>
+      <h2>FOOTER</h2>
+    </footer>
   </div>
 </template>
 
 <script setup>
 import Nav from "../components/Nav.vue";
+import TaskPendientes from "../components/TaskPendientes.vue";
+import Progreso from "../components/Progreso.vue";
 import { useTaskStore } from "../stores/task";
 import { reactive, ref } from "vue";
 import { useUserStore } from "../stores/user";
