@@ -76,10 +76,9 @@ const getTasks = async () => {
     }
     tasksCompleteLength.value = tasksComplete.length;
   });
-  tasksProgreso.value = (
-    (tasksCompleteLength.value / tasksLength.value) *
-    100
-  ).toFixed(2);
+  tasksProgreso.value = parseFloat(
+    ((tasksCompleteLength.value / tasksLength.value) * 100).toFixed(2)
+  );
   conversor();
   if (tasksInComplete.length != 0) {
     taskPendienteActive.value = tasks.value[countIncomplete];
