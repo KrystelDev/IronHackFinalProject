@@ -53,7 +53,14 @@ const tasksCompleteLength = ref(0);
 const tasksProgreso = ref(0);
 const progresoConversor = ref(0);
 let tasksInComplete = reactive([]);
-const taskPendienteActive = ref();
+const taskPendienteActive = ref({
+  id: "",
+  user_id: tasks.user_id,
+  title: "",
+  is_complete: true,
+  inserted_at: "",
+  description: "",
+});
 
 // Creamos una función que conecte a la store para conseguir las tareas de supabase y trabajar con ellas:
 const getTasks = async () => {
@@ -74,8 +81,17 @@ const getTasks = async () => {
     100
   ).toFixed(2);
   conversor();
-  if (tasksInComplete) {
+  if (tasksInComplete.length != 0) {
     taskPendienteActive.value = tasks.value[countIncomplete];
+  } else {
+    taskPendienteActive.value = {
+      id: "",
+      user_id: tasks.user_id,
+      title: "No tienes tareas pendientes!",
+      is_complete: true,
+      inserted_at: "",
+      description: "Estamos deseando saber tus proximos proyectos.",
+    };
   }
 };
 getTasks();
