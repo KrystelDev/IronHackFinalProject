@@ -18,9 +18,6 @@ const tasks = ref([]);
 // Creamos una función que conecte a la store para conseguir las tareas de supabase y trabajar con ellas:
 const getTasks = async () => {
   tasks.value = await taskStore.fetchTasks();
-  if (props.taskPendienteActive) {
-    props.taskPendienteActive = tasks[0];
-  }
 };
 getTasks();
 
