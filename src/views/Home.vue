@@ -2,17 +2,25 @@
   <div class="wrapper">
     <Nav :username="username" />
     <main>
-      <h2>Tu progreso:</h2>
-      <Progreso
-        :tasksCompleteLength="tasksCompleteLength"
-        :tasksLength="tasksLength"
-        :tasksProgreso="tasksProgreso"
-        :avatar_url="avatar_url"
-        :progresoConversor="progresoConversor"
-      />
-      <div>
-        <TaskPendientes :tasks="tasks" />
-      </div>
+      <section>
+        <h2>Tu progreso:</h2>
+
+        <Progreso
+          :tasksCompleteLength="tasksCompleteLength"
+          :tasksLength="tasksLength"
+          :tasksProgreso="tasksProgreso"
+          :avatar_url="avatar_url"
+          :progresoConversor="progresoConversor"
+        />
+      </section>
+      <section>
+        <h2>Tus tareas pendientes:</h2>
+        <div class="tasksPendiente">
+          <button @click="changeIndex(-1)">&lt;</button>
+          <TaskPendientes :taskPendienteActive="taskPendienteActive" />
+          <button @click="changeIndex(1)">&gt;</button>
+        </div>
+      </section>
       <div>
         <h2>Consejos:</h2>
         {{ tasks }}
@@ -27,7 +35,7 @@
 
 <script setup>
 import Nav from "../components/Nav.vue";
-import TaskPendientes from "../components/TaskPendientes.vue";
+import TaskPendientes from "../components/TaskPendiente.vue";
 import Progreso from "../components/Progreso.vue";
 import { useTaskStore } from "../stores/task";
 import { reactive, ref } from "vue";
@@ -36,12 +44,16 @@ import { useUserStore } from "../stores/user";
 const taskStore = useTaskStore();
 // Variable para guardar las tareas de supabase
 const tasks = ref([]);
+// Variables para poder visulaizar el progreso de las tascas:
 const tasksLength = ref(0);
 let tasksComplete = reactive([]);
-let count = -1;
+let countComplete = -1;
+let countIncomplete = -1;
 const tasksCompleteLength = ref(0);
 const tasksProgreso = ref(0);
 const progresoConversor = ref(0);
+let tasksInComplete = reactive([]);
+const taskPendienteActive = ref();
 
 // Creamos una función que conecte a la store para conseguir las tareas de supabase y trabajar con ellas:
 const getTasks = async () => {
@@ -49,8 +61,11 @@ const getTasks = async () => {
   tasksLength.value = tasks.value.length;
   tasksComplete = tasks.value.filter((task) => {
     if (task.is_complete == true) {
-      count += 1;
-      tasksComplete[count] = task;
+      countComplete += 1;
+      tasksComplete[countComplete] = task;
+    } else {
+      countIncomplete += 1;
+      tasksInComplete[countIncomplete] = task;
     }
     tasksCompleteLength.value = tasksComplete.length;
   });
@@ -59,18 +74,34 @@ const getTasks = async () => {
     100
   ).toFixed(2);
   conversor();
+  if (tasksInComplete) {
+    taskPendienteActive.value = tasks.value[countIncomplete];
+  }
 };
 getTasks();
 
 // More info conversor -> https://stackoverflow.com/questions/70787435/convert-range-0-5-1-to-output-range-10-with-javascript
 
-// rango antigo es el percentatge
-// rango destino es de 0 a 450
-
-// rango destino inicio + ()
+// rango antigo es el percentatge (de 0 a 100)
+// rango destino es el stroke-dashoffset (de 450 a 0)
 const conversor = () => {
   progresoConversor.value =
     450 + ((tasksProgreso.value - 0) * (0 - 450)) / (100 - 0);
+};
+
+// Moverte por las tareas pendientes:
+// Variable indice para desplazamiento de visualización "Tus tareas pendietnes:"
+let i = ref(0);
+
+const changeIndex = (num) => {
+  i.value += num;
+  if (i.value >= tasksInComplete.length) {
+    i.value = 0;
+  }
+  if (i.value == -1) {
+    i.value = tasksInComplete.length - 1;
+  }
+  taskPendienteActive.value = tasksInComplete[i.value];
 };
 
 // ******** Conseguir nombre real del usuario:
@@ -114,6 +145,7 @@ getProfile();
 </script>
 
 <style>
+/* TO DO */
 /* Progress Circular, falta transición */
 /* @keyframes anim {
     100% {
