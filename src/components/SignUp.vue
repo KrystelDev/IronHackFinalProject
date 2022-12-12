@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <div class="header">
       <div class="header-description">
         <h3 class="header-title">Register to ToDo App</h3>

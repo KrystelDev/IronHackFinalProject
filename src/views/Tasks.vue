@@ -4,14 +4,17 @@
 
     <NewTask @getTasks="getTasks" />
     <h1>Tasks:</h1>
-    <TaskItem
-      @deleteTask="deleteTask"
-      @changeComplete="changeComplete"
-      @changeTask="changeTask"
-      v-for="task in tasks"
-      :key="task.id"
-      :task="task"
-    />
+    <div class="tasksItem">
+      <TaskItem
+        @deleteTask="deleteTask"
+        @changeComplete="changeComplete"
+        @changeTask="changeTask"
+        v-for="task in tasks"
+        :key="task.id"
+        :task="task"
+      />
+    </div>
+
     <Footer :username="username" class="onlyMobile pegajosoBottom" />
   </div>
 </template>

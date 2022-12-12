@@ -1,7 +1,7 @@
 <!-- COMPONENTE BOILERPLATE -->
 
 <template>
-  <div class="container">
+  <div>
     <form @submit.prevent="signIn" class="form-sign-in">
       <div class="form">
         <div class="form-input">

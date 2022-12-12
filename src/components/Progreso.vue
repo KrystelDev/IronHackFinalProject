@@ -1,7 +1,7 @@
 <template>
   <div id="progressBar">
     <p>hola</p>
-    <div class="container">
+    <div>
       <progress
         class="progress is-primary"
         :value="props.tasksCompleteLength"

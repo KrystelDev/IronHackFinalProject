@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <h3>Titule: {{ task.title }}</h3>
     <h2>Description: {{ task.description }}</h2>
     <div v-show="editTask">
@@ -14,7 +14,6 @@
         @click="changeComplete"
         v-model="task.is_complete"
       />
-      <!-- <p>{{ estado }}</p> -->
       <span class="slider round"></span>
     </label>
     <button @click="deleteTask">Delete {{ task.title }}</button>
@@ -25,7 +24,6 @@
 <script setup>
 import { ref } from "vue";
 import { useTaskStore } from "../stores/task";
-import { supabase } from "../supabase";
 
 let title = ref(props.task.title);
 let description = ref(props.task.description);

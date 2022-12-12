@@ -8,10 +8,20 @@
   --fontTitle: "Arial";
   --fontBody: "Helvetica";
 }
-
-/* Home view */
-.padre {
+.onlyMobile {
+  display: flex;
+  justify-content: center;
+}
+.notMobile {
   display: none;
+}
+.pegajosoBottom {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  text-align: center;
+  justify-content: space-around;
 }
 
 /* Nav Component */
@@ -28,11 +38,6 @@ h1 {
 /* Start progress circule */
 #progressBar {
   display: none;
-}
-
-.padre {
-  display: flex;
-  justify-content: center;
 }
 .skill {
   width: 160px;
@@ -91,6 +96,14 @@ svg {
   border-radius: 50%;
 }
 
+/* Tareas pendientes HOME */
+.tasksPendiente {
+  display: flex;
+}
+
+/* Tareas pendientes Componente */
+.taskPendiente {
+}
 /* Account View */
 
 /* TaskItem */
@@ -109,7 +122,7 @@ svg {
   height: 0;
 }
 
-/* The slider */
+/* The slider (effect is_complete) */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -156,14 +169,11 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-/* .padre {
-  background-color: #e3edf7;
-  height: 100vh;
-  display: flex;
-  -ms-align-items: center;
-  align-items: center;
-  justify-content: center;
-} */
+
+.tasksItem {
+  margin-bottom: 25vh;
+}
+
 /********************************* TABLETA *********************************/
 
 @media (min-width: 768px) {
@@ -173,8 +183,11 @@ input:checked + .slider:before {
   #progressBar {
     display: flex;
   }
-  .padre {
+  .onlyMobile {
     display: none;
+  }
+  .notMobile {
+    display: flex;
   }
 }
 
