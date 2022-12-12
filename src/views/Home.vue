@@ -14,6 +14,31 @@
         />
       </section>
       <section>
+        <div v-if="showErrorMessage">
+          <p class="error-text">{{ errorMessage }}</p>
+        </div>
+        <div v-if="showCorrectMessage">
+          <p class="error-text">{{ correctMessage }}</p>
+        </div>
+        <div>
+          <div class="input-field">
+            <input
+              type="text"
+              placeholder="Add a Task Title - Listen to Kendrick Lamar"
+              v-model="name"
+            />
+          </div>
+          <div class="input-field">
+            <input
+              type="text"
+              placeholder="Add a Task Description - Look up Kendrick Lamar's FEAR album on spotify and listen to the whole album."
+              v-model="description"
+            />
+          </div>
+          <button @click="addTask" class="button">Add</button>
+        </div>
+      </section>
+      <section>
         <h2>Tus tareas pendientes:</h2>
         <div class="tasksPendiente">
           <button @click="changeIndex(-1)">&lt;</button>
@@ -28,7 +53,6 @@
         </div>
       </section>
     </main>
-
     <Footer :username="username" class="onlyMobile pegajosoBottom" />
   </div>
 </template>
@@ -57,17 +81,19 @@ let tasksInComplete = reactive([]);
 const taskPendienteActive = ref({
   id: "",
   user_id: tasks.user_id,
-  title: "",
+  title: "No tienes tareas pendientes!",
   is_complete: true,
   inserted_at: "",
-  description: "",
+  description: "Estamos deseando saber tus proximos proyectos.",
 });
 
 // Creamos una función que conecte a la store para conseguir las tareas de supabase y trabajar con ellas:
+
 const getTasks = async () => {
   tasks.value = await taskStore.fetchTasks();
   tasksLength.value = tasks.value.length;
-  tasksComplete = tasks.value.filter((task) => {
+
+  tasks.value.forEach((task) => {
     if (task.is_complete == true) {
       countComplete += 1;
       tasksComplete[countComplete] = task;
@@ -80,18 +106,11 @@ const getTasks = async () => {
   tasksProgreso.value = parseFloat(
     ((tasksCompleteLength.value / tasksLength.value) * 100).toFixed(2)
   );
+
   conversor();
+
   if (tasksInComplete.length != 0) {
-    taskPendienteActive.value = tasks.value[countIncomplete];
-  } else {
-    taskPendienteActive.value = {
-      id: "",
-      user_id: tasks.user_id,
-      title: "No tienes tareas pendientes!",
-      is_complete: true,
-      inserted_at: "",
-      description: "Estamos deseando saber tus proximos proyectos.",
-    };
+    taskPendienteActive.value = tasksInComplete[i.value];
   }
 };
 getTasks();
@@ -122,6 +141,44 @@ const changeIndex = (num) => {
   }
 };
 
+// ADD TASK
+// Arrow function para crear tareas.
+// variables para los valors de los inputs
+const name = ref("");
+const description = ref("");
+
+// constant to save a variable that holds an initial false boolean value for the errorMessage container that is conditionally displayed depending if the input field is empty
+const showErrorMessage = ref(false);
+const showCorrectMessage = ref(false);
+
+// const constant to save a variable that holds the value of the error message
+const errorMessage = ref(null);
+const correctMessage = ref(null);
+
+const addTask = async () => {
+  if (name.value.length === 0 || description.value.length === 0) {
+    // Primero comprobamos que ningún campo del input esté vacío y lanzamos el error con un timeout para informar al user.
+
+    showErrorMessage.value = true;
+    errorMessage.value = "The task title or description is empty";
+  } else {
+    // Aquí mandamos los valores a la store para crear la nueva Task.
+    await taskStore.addTask(name.value, description.value);
+    name.value = "";
+    description.value = "";
+
+    showCorrectMessage.value = true;
+    correctMessage.value = "Hemos registrado tu nueva tarea!";
+
+    getTasks();
+    // TaskPendientes.$forceUpdate();
+    // upDate();
+  }
+  setTimeout(() => {
+    showErrorMessage.value = false;
+    showCorrectMessage.value = false;
+  }, 3000);
+};
 // ******** Conseguir nombre real del usuario:
 const userStore = useUserStore();
 
