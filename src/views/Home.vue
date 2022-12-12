@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <Nav :username="username" />
+    <Nav :username="username" class="notMobile" />
     <main>
       <section>
         <h2>Tu progreso:</h2>
@@ -21,20 +21,21 @@
           <button @click="changeIndex(1)">&gt;</button>
         </div>
       </section>
-      <div>
-        <h2>Consejos:</h2>
-        {{ tasks }}
-      </div>
+      <section class="notMobile">
+        <div>
+          <h2>Consejos:</h2>
+          {{ tasks }}
+        </div>
+      </section>
     </main>
 
-    <footer>
-      <h2>FOOTER</h2>
-    </footer>
+    <Footer :username="username" class="onlyMobile pegajosoBottom" />
   </div>
 </template>
 
 <script setup>
 import Nav from "../components/Nav.vue";
+import Footer from "../components/Footer.vue";
 import TaskPendientes from "../components/TaskPendiente.vue";
 import Progreso from "../components/Progreso.vue";
 import { useTaskStore } from "../stores/task";
@@ -109,14 +110,16 @@ const conversor = () => {
 let i = ref(0);
 
 const changeIndex = (num) => {
-  i.value += num;
-  if (i.value >= tasksInComplete.length) {
-    i.value = 0;
+  if (tasksInComplete.length != 0) {
+    i.value += num;
+    if (i.value >= tasksInComplete.length) {
+      i.value = 0;
+    }
+    if (i.value == -1) {
+      i.value = tasksInComplete.length - 1;
+    }
+    taskPendienteActive.value = tasksInComplete[i.value];
   }
-  if (i.value == -1) {
-    i.value = tasksInComplete.length - 1;
-  }
-  taskPendienteActive.value = tasksInComplete[i.value];
 };
 
 // ******** Conseguir nombre real del usuario:

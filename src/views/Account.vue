@@ -1,5 +1,6 @@
 <template>
-  <Nav :username="username" />
+  <Nav :username="username" class="notMobile" />
+
   <h1>Name: {{ username }}</h1>
   <img
     :src="
@@ -17,11 +18,13 @@
     <button @click="changePerfil">Save</button>
   </div>
   <button @click="changeEditPerfil">Edit</button>
+  <Footer :username="username" class="onlyMobile pegajosoBottom" />
 </template>
 
 <script setup>
 import { ref } from "vue";
 import Nav from "../components/Nav.vue";
+import Footer from "../components/Footer.vue";
 import { useUserStore } from "../stores/user";
 
 const userStore = useUserStore();

@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <Nav :username="username" />
+    <Nav :username="username" class="notMobile" />
 
     <NewTask @getTasks="getTasks" />
     <h1>Tasks:</h1>
@@ -12,6 +12,7 @@
       :key="task.id"
       :task="task"
     />
+    <Footer :username="username" class="onlyMobile pegajosoBottom" />
   </div>
 </template>
 
@@ -21,6 +22,7 @@ import { useTaskStore } from "../stores/task";
 import { useUserStore } from "../stores/user";
 import { useRouter } from "vue-router";
 import Nav from "../components/Nav.vue";
+import Footer from "../components/Footer.vue";
 import NewTask from "../components/NewTask.vue";
 import TaskItem from "../components/TaskItem.vue";
 
