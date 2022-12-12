@@ -19,7 +19,6 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { ref } from "vue";
 import { useUserStore } from "../stores/user";
 
 const props = defineProps({
@@ -48,7 +47,7 @@ const signOut = async () => {
 </script>
 
 <style>
-nav {
+/* nav {
   background-color: lightgray;
   display: flex;
   width: 100%;
@@ -62,5 +61,5 @@ nav ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 </style>

@@ -1,10 +1,8 @@
-<template>
+<template style="width: -webkit-fill-available">
   <div class="wrapper">
     <Nav :username="username" class="notMobile" />
     <main>
       <section>
-        <h2>Tu progreso:</h2>
-
         <Progreso
           :tasksCompleteLength="tasksCompleteLength"
           :tasksLength="tasksLength"
@@ -13,32 +11,35 @@
           :progresoConversor="progresoConversor"
         />
       </section>
-      <section>
+      <section class="addHome">
         <div v-if="showErrorMessage">
           <p class="error-text">{{ errorMessage }}</p>
         </div>
         <div v-if="showCorrectMessage">
           <p class="error-text">{{ correctMessage }}</p>
         </div>
-        <div>
-          <div class="input-field">
+        <div class="changeAddHome" v-show="addNewTask">
+          <div>
             <input
               type="text"
-              placeholder="Add a Task Title - Listen to Kendrick Lamar"
+              placeholder="Añade el título de la tasca"
               v-model="name"
             />
           </div>
           <div class="input-field">
             <input
               type="text"
-              placeholder="Add a Task Description - Look up Kendrick Lamar's FEAR album on spotify and listen to the whole album."
+              placeholder="Añade la descripción de la tasca"
               v-model="description"
             />
           </div>
-          <button @click="addTask" class="button">Add</button>
+          <div>
+            <button @click="addTask" class="button">Add</button>
+            <button @click="changeaddNewTask">Cancel</button>
+          </div>
         </div>
       </section>
-      <section>
+      <section class="tareas">
         <h2>Tus tareas pendientes:</h2>
         <div class="tasksPendiente">
           <button @click="changeIndex(-1)">&lt;</button>
@@ -53,6 +54,9 @@
         </div>
       </section>
     </main>
+    <div v-show="!addNewTask" class="addNewTask">
+      <button @click="changeaddNewTask">Add New Task</button>
+    </div>
     <Footer :username="username" class="onlyMobile pegajosoBottom" />
   </div>
 </template>
@@ -146,6 +150,7 @@ const changeIndex = (num) => {
 // variables para los valors de los inputs
 const name = ref("");
 const description = ref("");
+let addNewTask = ref(false);
 
 // constant to save a variable that holds an initial false boolean value for the errorMessage container that is conditionally displayed depending if the input field is empty
 const showErrorMessage = ref(false);
@@ -154,6 +159,10 @@ const showCorrectMessage = ref(false);
 // const constant to save a variable that holds the value of the error message
 const errorMessage = ref(null);
 const correctMessage = ref(null);
+
+const changeaddNewTask = () => {
+  addNewTask.value = !addNewTask.value;
+};
 
 const addTask = async () => {
   if (name.value.length === 0 || description.value.length === 0) {

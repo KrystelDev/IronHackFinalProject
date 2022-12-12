@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="footer">
     <router-link to="/">Home</router-link>
     <router-link to="/tasks">Task Manager</router-link>
     <div>
@@ -47,7 +47,7 @@ const signOut = async () => {
 </script>
 
 <style>
-nav {
+/* nav {
   background-color: lightgray;
   display: flex;
   width: 100%;
@@ -61,5 +61,5 @@ nav ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 </style>

@@ -1,24 +1,26 @@
 <template>
-  <Nav :username="username" class="notMobile" />
+  <div class="wrapper">
+    <Nav :username="username" class="notMobile" />
 
-  <h1>Name: {{ username }}</h1>
-  <img
-    :src="
-      avatar_url
-        ? avatar_url
-        : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'
-    "
-    alt="Profile picture"
-  />
-  <div v-show="editPerfil">
-    <label for="name">Nombre</label>
-    <input type="text" v-model="username" />
-    <label for="avatar">Avatar</label>
-    <input type="text" v-model="avatar_url" />
-    <button @click="changePerfil">Save</button>
+    <h1>Name: {{ username }}</h1>
+    <img
+      :src="
+        avatar_url
+          ? avatar_url
+          : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'
+      "
+      alt="Profile picture"
+    />
+    <div v-show="editPerfil">
+      <label for="name">Nombre</label>
+      <input type="text" v-model="username" />
+      <label for="avatar">Avatar</label>
+      <input type="text" v-model="avatar_url" />
+      <button @click="changePerfil">Save</button>
+    </div>
+    <button @click="changeEditPerfil">Edit</button>
+    <Footer :username="username" class="onlyMobile pegajosoBottom" />
   </div>
-  <button @click="changeEditPerfil">Edit</button>
-  <Footer :username="username" class="onlyMobile pegajosoBottom" />
 </template>
 
 <script setup>
