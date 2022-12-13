@@ -71,8 +71,8 @@ const tasks = ref([]);
 // Variables para poder visulaizar el progreso de las tascas:
 const tasksLength = ref(0);
 let tasksComplete = reactive([]);
-let countComplete = -1;
-let countIncomplete = -1;
+let countComplete = 0;
+let countIncomplete = 0;
 const tasksCompleteLength = ref(0);
 const tasksProgreso = ref(0);
 const progresoConversor = ref(0);
@@ -81,7 +81,7 @@ const taskPendienteActive = ref({
   id: "",
   user_id: tasks.user_id,
   title: "No tienes tareas pendientes!",
-  is_complete: true,
+  is_complete: false,
   inserted_at: "",
   description: "Estamos deseando saber tus proximos proyectos.",
 });
@@ -91,17 +91,22 @@ const taskPendienteActive = ref({
 const getTasks = async () => {
   tasks.value = await taskStore.fetchTasks();
   tasksLength.value = tasks.value.length;
-
+  countComplete = 0;
+  countIncomplete = 0;
   tasks.value.forEach((task) => {
     if (task.is_complete == true) {
-      countComplete += 1;
       tasksComplete[countComplete] = task;
+      countComplete = countComplete + 1;
     } else {
-      countIncomplete += 1;
       tasksInComplete[countIncomplete] = task;
+      countIncomplete = countComplete + 1;
     }
     tasksCompleteLength.value = tasksComplete.length;
   });
+  console.log("tasksCompleteLength");
+  console.log(tasksCompleteLength.value);
+  console.log("tasksLength");
+  console.log(tasksLength.value);
   tasksProgreso.value = parseFloat(
     ((tasksCompleteLength.value / tasksLength.value) * 100).toFixed(2)
   );
@@ -119,6 +124,8 @@ getTasks();
 // rango antigo es el percentatge (de 0 a 100)
 // rango destino es el stroke-dashoffset (de 450 a 0)
 const conversor = () => {
+  console.log("PROGRESO TAREA");
+  console.log(tasksProgreso.value);
   progresoConversor.value =
     450 + ((tasksProgreso.value - 0) * (0 - 450)) / (100 - 0);
 };
