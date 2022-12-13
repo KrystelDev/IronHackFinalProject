@@ -1,13 +1,12 @@
 <template>
   <div>
-    <h3>Titule: {{ task.title }}</h3>
-    <h2>Description: {{ task.description }}</h2>
+    <p>Titule: {{ task.title }}</p>
+    <p>Description: {{ task.description }}</p>
     <div v-show="editTask">
       <input type="text" v-model="title" />
       <input type="text" v-model="description" />
       <button @click="changeTask">Save</button>
     </div>
-    <p>{{ task.is_complete }}</p>
     <label class="switch">
       <input
         type="checkbox"
@@ -28,7 +27,6 @@ import { useTaskStore } from "../stores/task";
 let title = ref(props.task.title);
 let description = ref(props.task.description);
 let editTask = ref(false);
-// let estado = ref(props.task.is_complete ? "completado" : "en procesp");
 
 const changeEdit = () => {
   editTask.value = !editTask.value;
@@ -49,11 +47,6 @@ const deleteTask = async () => {
 };
 
 const changeComplete = async () => {
-  console.log("Taskitem");
-  console.log(props.task.id);
-  console.log(taskStore);
-  // const boolean = await taskStore.getComplete(props.task.id);
-  // console.log(prueba);
   await taskStore.changeComplete(props.task.id, props.task.is_complete);
   // emit("changeComplete");
 };
