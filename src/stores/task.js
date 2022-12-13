@@ -16,7 +16,6 @@ export const useTaskStore = defineStore("tasks", {
       this.tasks = tasks;
       return this.tasks;
     },
-
     async addTask(title, description) {
       const { data, error } = await supabase.from("tasks").insert([
         {
@@ -34,11 +33,21 @@ export const useTaskStore = defineStore("tasks", {
       });
     },
 
-    async changeComplete(id) {
-      const { data, error } = await supabase
+    // async getComplete(id) {
+    //   const { data, error } = await supabase
+    //     .from("tasks")
+    //     .select("is_complete")
+    //     .match({ id: id });
+
+    //   return data[0].is_complete;
+    // },
+
+    async changeComplete(id, isComplete) {
+      console.log(boolean);
+      const { error } = await supabase
         .from("tasks")
         .update({
-          is_complete: (this.is_complete = !this.is_complete),
+          is_complete: !isComplete,
         })
         .match({
           id: id,
