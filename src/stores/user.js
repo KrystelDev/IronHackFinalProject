@@ -71,7 +71,6 @@ export const useUserStore = defineStore("user", {
       );
       if (error) {
         throw error;
-        alert("Check your email for the login link!");
       }
       if (user) {
         this.user = user;

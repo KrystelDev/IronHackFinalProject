@@ -172,6 +172,7 @@ const addTask = async () => {
     errorMessage.value = "The task title or description is empty";
   } else {
     // Aquí mandamos los valores a la store para crear la nueva Task.
+    changeaddNewTask();
     await taskStore.addTask(name.value, description.value);
     name.value = "";
     description.value = "";
@@ -180,8 +181,6 @@ const addTask = async () => {
     correctMessage.value = "Hemos registrado tu nueva tarea!";
 
     getTasks();
-    // TaskPendientes.$forceUpdate();
-    // upDate();
   }
   setTimeout(() => {
     showErrorMessage.value = false;
