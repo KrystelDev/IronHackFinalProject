@@ -1,18 +1,11 @@
 <template>
   <nav class="footer">
     <router-link to="/">Home</router-link>
-    <router-link to="/tasks">Task Manager</router-link>
-    <div>
-      <ul>
-        <li>
-          <p>Welcome,</p>
-          <router-link to="/account">{{ props.username }}</router-link>
-        </li>
-        <li>
-          <button @click="signOut()">Log out</button>
-        </li>
-      </ul>
-    </div>
+    <router-link to="/tasks">Tascas</router-link>
+    <router-link to="/account">{{ props.username }}</router-link>
+    <button @click="signOut()">
+      <img src="../assets/img/cerrarSesion.png" alt="" />
+    </button>
   </nav>
 </template>
 

@@ -10,7 +10,7 @@
       {{ props.tasksProgreso }}% completado
     </div>
   </div>
-  <div class="onlyMobile">
+  <div class="onlyMobile circleProgres">
     <div class="skill">
       <div class="outer">
         <div class="inner">

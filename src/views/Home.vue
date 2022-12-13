@@ -1,16 +1,16 @@
 <template style="width: -webkit-fill-available">
   <div class="wrapper">
     <Nav :username="username" class="notMobile" />
+    <section>
+      <Progreso
+        :tasksCompleteLength="tasksCompleteLength"
+        :tasksLength="tasksLength"
+        :tasksProgreso="tasksProgreso"
+        :avatar_url="avatar_url"
+        :progresoConversor="progresoConversor"
+      />
+    </section>
     <main>
-      <section>
-        <Progreso
-          :tasksCompleteLength="tasksCompleteLength"
-          :tasksLength="tasksLength"
-          :tasksProgreso="tasksProgreso"
-          :avatar_url="avatar_url"
-          :progresoConversor="progresoConversor"
-        />
-      </section>
       <section class="addHome">
         <div v-if="showErrorMessage">
           <p class="error-text">{{ errorMessage }}</p>
@@ -18,33 +18,28 @@
         <div v-if="showCorrectMessage">
           <p class="error-text">{{ correctMessage }}</p>
         </div>
-        <div class="changeAddHome" v-show="addNewTask">
-          <div>
-            <input
-              type="text"
-              placeholder="Añade el título de la tasca"
-              v-model="name"
-            />
-          </div>
-          <div class="input-field">
-            <input
-              type="text"
-              placeholder="Añade la descripción de la tasca"
-              v-model="description"
-            />
-          </div>
-          <div>
-            <button @click="addTask" class="button">Add</button>
-            <button @click="changeaddNewTask">Cancel</button>
-          </div>
-        </div>
       </section>
+      <!-- Necesito dos v-swosh dentro del fondo puzzle que no se va a mover, lo de dentro si se cambia. van por separado, si se ve uno el otro no. -->
       <section class="tareas">
         <h2>Tus tareas pendientes:</h2>
         <div class="tasksPendiente">
-          <button @click="changeIndex(-1)">&lt;</button>
-          <TaskPendientes :taskPendienteActive="taskPendienteActive" />
-          <button @click="changeIndex(1)">&gt;</button>
+          <div class="dentroPuzzle" v-show="!addNewTask">
+            <button @click="changeIndex(-1)">&lt;</button>
+            <TaskPendientes :taskPendienteActive="taskPendienteActive" />
+            <button @click="changeIndex(1)">&gt;</button>
+          </div>
+          <div class="dentroPuzzle" v-show="addNewTask">
+            <button @click="addTask" class="button">+</button>
+            <div class="addNewTaskFatherInputs">
+              <input type="text" placeholder="Título" v-model="name" />
+              <input
+                type="text"
+                placeholder="Descripción..."
+                v-model="description"
+              />
+            </div>
+            <button @click="changeaddNewTask">x</button>
+          </div>
         </div>
       </section>
       <section class="notMobile">
@@ -54,8 +49,8 @@
         </div>
       </section>
     </main>
-    <div v-show="!addNewTask" class="addNewTask">
-      <button @click="changeaddNewTask">Add New Task</button>
+    <div :class="classAddNewTask">
+      <button @click="changeaddNewTask">+ Add Taks</button>
     </div>
     <Footer :username="username" class="onlyMobile pegajosoBottom" />
   </div>
@@ -151,6 +146,7 @@ const changeIndex = (num) => {
 const name = ref("");
 const description = ref("");
 let addNewTask = ref(false);
+const classAddNewTask = ref("addNewTask");
 
 // constant to save a variable that holds an initial false boolean value for the errorMessage container that is conditionally displayed depending if the input field is empty
 const showErrorMessage = ref(false);
@@ -162,6 +158,7 @@ const correctMessage = ref(null);
 
 const changeaddNewTask = () => {
   addNewTask.value = !addNewTask.value;
+  classAddNewTask.value = addNewTask.value ? "notAddNewTask" : "addNewTask";
 };
 
 const addTask = async () => {
