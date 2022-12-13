@@ -45,7 +45,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-top: 8rem;
 }
 
 main {
@@ -60,9 +59,9 @@ main {
 #progressBar {
   display: none;
 }
-/* .circleProgres {
-  margin-top: 12vh;
-} */
+.circleProgres {
+  margin-top: 8vh;
+}
 .skill {
   width: 160px;
   height: 160px;
@@ -329,17 +328,23 @@ input:checked + .slider:before {
   width: 20vw;
 }
 
-.pegajosoBottom {
+.positionBottom {
   width: 100vw;
   text-align: center;
   justify-content: space-around;
-  margin-bottom: -1rem;
+  margin-bottom: -5rem;
+}
+
+/* Account View */
+.tituloProfile {
+  margin-top: 8rem;
 }
 
 /* TASKS */
-/* Account View */
-
 /* TaskItem */
+.tituloNewTask {
+  margin-top: 8rem;
+}
 .addTaskAll {
   display: flex;
   width: 100vw;
@@ -403,6 +408,73 @@ input:checked + .slider:before {
   padding: 0 1rem 1rem;
 }
 
+.editProfile {
+  transition-duration: 0.4s;
+  background: none;
+  color: #f0e41d;
+  border: 6px solid #f0e41d;
+  border-radius: 50%;
+  padding: 1vh 6vw;
+  font-weight: 700;
+  width: 7rem;
+  text-align: center;
+}
+
+.editProfile:hover {
+  background-color: #f0e41d;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* SIGN UP */
+.header-description {
+  margin-top: 8rem;
+}
+.from {
+  margin-top: 5rem;
+}
+
+#button {
+  transition-duration: 0.4s;
+  background: none;
+  color: #f0e41d;
+  border: 10px solid #f0e41d;
+  border-radius: 50%;
+  padding: 1vh 6vw;
+  font-weight: 700;
+  width: auto;
+  text-align: center;
+  position: relative;
+  left: -1rem;
+  top: 6.5rem;
+  font-size: xx-large;
+}
+
+#button :hover {
+  background-color: #f0e41d;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.footerSing {
+  background-image: url(/src/assets/img/backgroundPuzzleFooter.png);
+  background-size: 131vw 28vh;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  background-position-y: -11vh;
+  height: 9rem;
+  width: 100vw;
+}
+.personalRouter {
+  position: relative;
+  left: -1rem;
+  top: 6.5rem;
+}
 /********************************* TABLETA *********************************/
 
 @media (min-width: 768px) {

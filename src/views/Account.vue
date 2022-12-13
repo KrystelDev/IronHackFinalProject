@@ -2,7 +2,7 @@
   <div class="wrapper">
     <Nav :username="username" class="notMobile" />
 
-    <h1>Name: {{ username }}</h1>
+    <h1 class="tituloProfile">Name: {{ username }}</h1>
     <img
       :src="
         avatar_url
@@ -18,8 +18,8 @@
       <input type="text" v-model="avatar_url" />
       <button @click="changePerfil">Save</button>
     </div>
-    <button @click="changeEditPerfil">Edit</button>
-    <Footer :username="username" class="onlyMobile pegajosoBottom" />
+    <button class="editProfile" @click="changeEditPerfil">Edit</button>
+    <Footer :username="username" class="onlyMobile positionBottom" />
   </div>
 </template>
 

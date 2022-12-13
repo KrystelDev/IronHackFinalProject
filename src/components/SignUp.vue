@@ -1,70 +1,58 @@
 <template>
-  <div>
-    <div class="header">
-      <div class="header-description">
-        <h3 class="header-title">Register to ToDo App</h3>
-        <p class="header-subtitle">Start organizing your tasks!</p>
-      </div>
-    </div>
+  <div class="wrapper">
+    <h1 class="header-description">Registrarse</h1>
+    <p>La pieza clave es la organización</p>
 
-    <form @submit.prevent="signUp" class="form-sign-in">
-      <div class="form">
-        <div class="form-input">
-          <label class="input-field-label">E-mail</label>
-          <input
-            type="email"
-            class="input-field"
-            placeholder="example@gmail.com"
-            id="email"
-            v-model="email"
-            required
-          />
-        </div>
-        <div class="form-input">
-          <label class="input-field-label">Password</label>
-          <input
-            type="password"
-            class="input-field"
-            placeholder="**********"
-            id="password"
-            v-model="password"
-            required
-          />
-        </div>
-        <div class="form-input">
-          <label class="input-field-label">Confirm password</label>
-          <input
-            type="password"
-            class="input-field"
-            placeholder="**********"
-            id="confirmPassword"
-            v-model="confirmPassword"
-            required
-          />
-        </div>
-        <button class="button" type="submit">Registrarte</button>
-        <p>
-          Have an account?
-          <PersonalRouter
-            :route="route"
-            :buttonText="buttonText"
-            class="sign-up-link"
-          />
-        </p>
-      </div>
-    </form>
+    <div class="addTaskAll">
+      <form @submit.prevent="signUp" class="dentroPuzzleAddTaskAll from">
+        <input
+          type="email"
+          class="input-field"
+          placeholder="example@gmail.com"
+          id="email"
+          v-model="email"
+          required
+        />
+        <input
+          type="password"
+          class="input-field"
+          placeholder="**********"
+          id="password"
+          v-model="password"
+          required
+        />
+        <input
+          type="password"
+          class="input-field"
+          placeholder="**********"
+          id="confirmPassword"
+          v-model="confirmPassword"
+          required
+        />
+        <button id="button" type="submit">Registrarte</button>
+      </form>
+    </div>
+    <p class="personalRouter">
+      Have an account?
+      <PersonalRouter
+        :route="route"
+        :buttonText="buttonText"
+        class="sign-up-link"
+      />
+    </p>
 
     <div v-show="errorMsg">{{ errorMsg }}</div>
+    <div class="onlyMobile positionBottom">
+      <nav class="footerSing"></nav>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import PersonalRouter from "./PersonalRouter.vue";
-import { supabase } from "../supabase";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../stores/user";
-import { storeToRefs } from "pinia";
 
 // Route Variables
 const route = "/auth/login";

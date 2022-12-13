@@ -15,7 +15,7 @@
       />
     </div>
 
-    <Footer :username="username" class="onlyMobile pegajosoBottom" />
+    <Footer :username="username" class="onlyMobile positionBottom" />
   </div>
 </template>
 

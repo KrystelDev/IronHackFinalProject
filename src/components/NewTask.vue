@@ -1,5 +1,5 @@
 <template>
-  <h1>Add a new Task</h1>
+  <h1 class="tituloNewT">Add a new Task</h1>
   <div class="addTaskAll">
     <div class="dentroPuzzleAddTaskAll">
       <div v-if="showErrorMessage">

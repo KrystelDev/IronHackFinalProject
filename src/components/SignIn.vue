@@ -1,44 +1,42 @@
-<!-- COMPONENTE BOILERPLATE -->
-
 <template>
-  <div>
-    <form @submit.prevent="signIn" class="form-sign-in">
-      <div class="form">
-        <div class="form-input">
-          <label class="input-field-label">E-mail</label>
-          <input
-            type="email"
-            class="input-field"
-            placeholder="example@gmail.com"
-            id="email"
-            v-model="email"
-            required
-          />
-        </div>
-        <div class="form-input">
-          <label class="input-field-label">Password</label>
-          <input
-            type="password"
-            class="input-field"
-            placeholder="**********"
-            id="password"
-            v-model="password"
-            required
-          />
-        </div>
-        <button class="button" type="submit">Entrar</button>
-        <p>
-          Have an account?
-          <PersonalRouter
-            :route="route"
-            :buttonText="buttonText"
-            class="sign-up-link"
-            @click="signIn()"
-          />
-        </p>
-      </div>
-      <div v-show="errorMsg">{{ errorMsg }}</div>
-    </form>
+  <div class="wrapper">
+    <h1 class="header-description">Conectarse</h1>
+    <p>Este puzzle no se va a montar solo.</p>
+
+    <div class="addTaskAll">
+      <form @submit.prevent="signIn" class="dentroPuzzleAddTaskAll from">
+        <input
+          type="email"
+          class="input-field"
+          placeholder="example@gmail.com"
+          id="email"
+          v-model="email"
+          required
+        />
+        <input
+          type="password"
+          class="input-field"
+          placeholder="**********"
+          id="password"
+          v-model="password"
+          required
+        />
+        <button id="button" type="submit">Entrar</button>
+      </form>
+    </div>
+    <p class="personalRouter">
+      Have an account?
+      <PersonalRouter
+        :route="route"
+        :buttonText="buttonText"
+        class="sign-up-link"
+        @click="signIn()"
+      />
+    </p>
+    <div v-show="errorMsg">{{ errorMsg }}</div>
+    <div class="onlyMobile positionBottom">
+      <nav class="footerSing"></nav>
+    </div>
   </div>
 </template>
 

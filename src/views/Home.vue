@@ -52,7 +52,7 @@
     <div :class="classAddNewTask">
       <button @click="changeaddNewTask">+ Add Taks</button>
     </div>
-    <Footer :username="username" class="onlyMobile pegajosoBottom" />
+    <Footer :username="username" class="onlyMobile positionBottom" />
   </div>
 </template>
 
