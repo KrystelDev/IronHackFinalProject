@@ -83,7 +83,7 @@ const taskPendienteActive = ref({
   title: "No tienes tareas pendientes!",
   is_complete: false,
   inserted_at: "",
-  description: "Estamos deseando saber tus proximos proyectos.",
+  description: "¿Cual será tu proximo paso?",
 });
 
 // Creamos una función que conecte a la store para conseguir las tareas de supabase y trabajar con ellas:
@@ -103,10 +103,6 @@ const getTasks = async () => {
     }
     tasksCompleteLength.value = tasksComplete.length;
   });
-  console.log("tasksCompleteLength");
-  console.log(tasksCompleteLength.value);
-  console.log("tasksLength");
-  console.log(tasksLength.value);
   tasksProgreso.value = parseFloat(
     ((tasksCompleteLength.value / tasksLength.value) * 100).toFixed(2)
   );
@@ -124,8 +120,6 @@ getTasks();
 // rango antigo es el percentatge (de 0 a 100)
 // rango destino es el stroke-dashoffset (de 450 a 0)
 const conversor = () => {
-  console.log("PROGRESO TAREA");
-  console.log(tasksProgreso.value);
   progresoConversor.value =
     450 + ((tasksProgreso.value - 0) * (0 - 450)) / (100 - 0);
 };

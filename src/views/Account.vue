@@ -48,7 +48,6 @@ const user_id = ref(null);
 const getProfile = async () => {
   await userStore.fetchUser();
   profile.value = userStore.profile;
-  console.log(profile.value);
   username.value = profile.value.username;
   avatar_url.value = profile.value.avatar_url;
   user_id.value = profile.value.user_id;
