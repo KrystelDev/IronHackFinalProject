@@ -48,7 +48,7 @@ const deleteTask = async () => {
 
 const changeComplete = async () => {
   await taskStore.changeComplete(props.task.id, props.task.is_complete);
-  // emit("changeComplete");
+  emit("changeComplete");
 };
 
 const changeTask = async () => {
