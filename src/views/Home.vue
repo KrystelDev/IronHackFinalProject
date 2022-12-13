@@ -1,4 +1,4 @@
-<template style="width: -webkit-fill-available">
+<template>
   <div class="wrapper">
     <Nav :username="username" class="notMobile" />
     <section>
