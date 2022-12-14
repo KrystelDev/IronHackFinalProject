@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <Nav :username="username" class="notMobile" />
-    <section>
+    <Nav :username="username" :avatar_url="avatar_url" class="notMobile" />
+    <section class="sinAlturaPC">
       <Progreso
         :tasksCompleteLength="tasksCompleteLength"
         :tasksLength="tasksLength"
@@ -11,7 +11,7 @@
       />
     </section>
     <main>
-      <section class="addHome">
+      <section class="addHome onlyMobile">
         <div v-if="showErrorMessage">
           <p class="error-text">{{ errorMessage }}</p>
         </div>
@@ -19,7 +19,27 @@
           <p class="error-text">{{ correctMessage }}</p>
         </div>
       </section>
-      <!-- Necesito dos v-swosh dentro del fondo puzzle que no se va a mover, lo de dentro si se cambia. van por separado, si se ve uno el otro no. -->
+      <section class="notMobile addTaskPC">
+        <section class="addHome">
+          <div v-if="showErrorMessage">
+            <p class="error-text">{{ errorMessage }}</p>
+          </div>
+          <div v-if="showCorrectMessage">
+            <p class="error-text">{{ correctMessage }}</p>
+          </div>
+        </section>
+        <div class="addTaskPcInputs">
+          <input type="text" placeholder="Título" v-model="name" />
+          <input
+            type="text"
+            placeholder="Descripción..."
+            v-model="description"
+          />
+          <div class="addTaskButton">
+            <button @click="addTaskPC">+ Add Taks</button>
+          </div>
+        </div>
+      </section>
       <section class="tareas">
         <h2>Tus tareas pendientes:</h2>
         <div class="tasksPendiente">
@@ -28,7 +48,7 @@
             <TaskPendientes :taskPendienteActive="taskPendienteActive" />
             <button @click="changeIndex(1)">&gt;</button>
           </div>
-          <div class="dentroPuzzle" v-show="addNewTask">
+          <div class="dentroPuzzle onlyMobile" v-show="addNewTask">
             <button @click="addTask" class="button">+</button>
             <div class="addNewTaskFatherInputs">
               <input type="text" placeholder="Título" v-model="name" />
@@ -42,14 +62,8 @@
           </div>
         </div>
       </section>
-      <section class="notMobile">
-        <div>
-          <h2>Consejos:</h2>
-          {{ tasks }}
-        </div>
-      </section>
     </main>
-    <div :class="classAddNewTask">
+    <div :class="classAddNewTask" class="onlyMobile">
       <button @click="changeaddNewTask">+ Add Taks</button>
     </div>
     <Footer :username="username" class="onlyMobile positionBottom" />
@@ -162,6 +176,28 @@ const changeaddNewTask = () => {
   classAddNewTask.value = addNewTask.value ? "notAddNewTask" : "addNewTask";
 };
 
+const addTaskPC = async () => {
+  if (name.value.length === 0 || description.value.length === 0) {
+    // Primero comprobamos que ningún campo del input esté vacío y lanzamos el error con un timeout para informar al user.
+
+    showErrorMessage.value = true;
+    errorMessage.value = "The task title or description is empty";
+  } else {
+    // Aquí mandamos los valores a la store para crear la nueva Task.
+    await taskStore.addTask(name.value, description.value);
+    name.value = "";
+    description.value = "";
+
+    showCorrectMessage.value = true;
+    correctMessage.value = "Hemos registrado tu nueva tarea!";
+
+    await getTasks();
+  }
+  setTimeout(() => {
+    showErrorMessage.value = false;
+    showCorrectMessage.value = false;
+  }, 3000);
+};
 const addTask = async () => {
   if (name.value.length === 0 || description.value.length === 0) {
     // Primero comprobamos que ningún campo del input esté vacío y lanzamos el error con un timeout para informar al user.
@@ -178,7 +214,7 @@ const addTask = async () => {
     showCorrectMessage.value = true;
     correctMessage.value = "Hemos registrado tu nueva tarea!";
 
-    getTasks();
+    await getTasks();
   }
   setTimeout(() => {
     showErrorMessage.value = false;

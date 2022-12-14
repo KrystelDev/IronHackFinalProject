@@ -1,13 +1,12 @@
 <template>
   <div id="progressBar">
-    <p>hola</p>
     <div>
       <progress
         class="progress is-primary"
         :value="props.tasksCompleteLength"
         :max="props.tasksLength"
       ></progress>
-      {{ props.tasksProgreso }}% completado
+      <p>{{ props.tasksProgreso }}% completado</p>
     </div>
   </div>
   <div class="onlyMobile circleProgres">

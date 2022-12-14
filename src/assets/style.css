@@ -9,6 +9,10 @@
   --fontBody: "Helvetica";
 }
 
+* {
+  /* outline: 1px solid red; */
+}
+
 #app {
   height: 90vh;
   width: 100vw;
@@ -502,9 +506,154 @@ input:checked + .slider:before {
     background-image: url(/src/assets/img/backgroundPuzzleFooter.png);
     background-size: 150%;
     background-position-y: -15vh;
+    background-attachment: fixed;
   }
   #app {
     height: 100vh;
     margin-left: 0;
+  }
+
+  .sinAlturaPC {
+    max-height: 0;
+  }
+
+  /* HOME */
+  .wrapper {
+    justify-content: initial;
+  }
+
+  .navPC {
+    width: 100vw;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+  }
+
+  .navPC > div {
+    display: flex;
+    align-items: center;
+    width: inherit;
+    text-align: center;
+    justify-content: space-evenly;
+    text-shadow: 0.2rem 0.2rem 0.3rem #ccc;
+  }
+
+  .navPC a {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: xxx-large;
+  }
+
+  .navPC > button {
+    background: none;
+    border: none;
+  }
+
+  progress[value] {
+    width: 23rem;
+    height: 5rem;
+    position: relative;
+    top: -2rem;
+    left: -25rem;
+  }
+
+  #progressBar p {
+    font-size: xx-large;
+    font-weight: 600;
+    text-shadow: 0.2rem 0.1rem 0.3rem #ccc;
+    position: relative;
+    top: -7.8rem;
+    left: -23rem;
+  }
+
+  main {
+    margin-top: 5rem;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .addTaskPC {
+    display: flex;
+    flex-direction: column;
+  }
+  .addTaskPcInputs {
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 0 20px rgb(0 0 0 / 10%), 0 0 4px rgb(0 0 0 / 23%);
+    min-height: 15rem;
+    padding: 0 1rem 1rem;
+  }
+  .addTaskPcInputs > input {
+    margin: 1vh 1vw;
+    color: #f44708;
+    font-size: large;
+    height: 2rem;
+    border: 2px solid #4caf50;
+    border-radius: 4px;
+  }
+  .addTaskButton {
+    display: flex;
+    justify-content: center;
+  }
+
+  .addTaskButton > button {
+    transition-duration: 0.4s;
+    background-color: white;
+    color: #4caf50;
+    border: 6px solid #4caf50;
+    border-radius: 50%;
+    padding: 0.5rem 2rem;
+  }
+
+  .addTaskButton > button:hover {
+    background-color: #4caf50;
+    color: white;
+  }
+
+  .tareas {
+    align-items: center;
+    width: 35rem;
+  }
+  .tareas > h2 {
+    text-align: center;
+    width: 23rem;
+    margin-top: 1rem;
+    margin-bottom: 0.4rem;
+    font-size: xx-large;
+  }
+
+  .tasksPendiente {
+    background-image: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: inherit;
+    max-width: 35rem;
+  }
+
+  .taskPendiente > h3,
+  .taskPendiente > h5 {
+    max-width: 23rem;
+    max-height: 3rem;
+  }
+  .taskPendiente > h5 {
+    white-space: break-spaces;
+    max-height: 9rem;
+  }
+  .tasksPendiente > div {
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 0 20px rgb(0 0 0 / 10%), 0 0 4px rgb(0 0 0 / 23%);
+    overflow: hidden;
+    transition: 0.7s;
+    text-overflow: ellipsis;
+    white-space: break-spaces;
+    min-height: 15rem;
+    padding: 0 1rem 1rem;
+  }
+  .dentroPuzzle {
+    margin: 0.5rem 0;
+    max-width: 35rem;
   }
 }

@@ -1,18 +1,18 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link>
-    <router-link to="/tasks">Task Manager</router-link>
+  <nav class="navPC">
+    <button @click="signOut()">
+      <img src="../assets/img/cerrarSesion.png" alt="" />
+    </button>
+    <div>
+      <router-link to="/tasks">Tascas</router-link>
+    </div>
+    <div>
+      <router-link to="/">Home</router-link>
+    </div>
 
     <div>
-      <ul>
-        <li>
-          <p>Welcome,</p>
-          <router-link to="/account">{{ props.username }}</router-link>
-        </li>
-        <li>
-          <button @click="signOut()">Log out</button>
-        </li>
-      </ul>
+      <img :src="props.avatar_url" alt="" />
+      <router-link to="/account">{{ props.username }}</router-link>
     </div>
   </nav>
 </template>
@@ -23,6 +23,7 @@ import { useUserStore } from "../stores/user";
 
 const props = defineProps({
   username: String,
+  avatar_url: String,
 });
 // async function that calls the signOut method from the useUserStore and pushes the user back to the Auth view.
 const redirect = useRouter();
