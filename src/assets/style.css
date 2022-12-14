@@ -482,9 +482,6 @@ input:checked + .slider:before {
 /********************************* TABLETA *********************************/
 
 @media (min-width: 768px) {
-  h1 {
-    color: blue;
-  }
   #progressBar {
     display: flex;
   }
@@ -655,5 +652,38 @@ input:checked + .slider:before {
   .dentroPuzzle {
     margin: 0.5rem 0;
     max-width: 35rem;
+  }
+
+  /* TACKS GENERAL */
+  .tituloNew {
+    display: none;
+  }
+  .tasksItem {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .addTaskPcInputsTaks {
+    position: fixed;
+    left: 8rem;
+    top: 17rem;
+  }
+  .tasksItemTask {
+    position: absolute;
+    top: 17rem;
+    right: 1rem;
+    max-width: 65vw;
+  }
+  /* Profile */
+  .tituloProfile {
+    margin-top: 0;
+  }
+  /* Sign */
+  .addTaskAll {
+    background: none;
+    min-height: initial;
+  }
+
+  .from {
+    margin: 0;
   }
 }

@@ -4,7 +4,7 @@
 
     <NewTask @getTasks="getTasks" />
     <h1>Tasks:</h1>
-    <div class="tasksItem">
+    <div class="tasksItem tasksItemTask">
       <TaskItem
         @deleteTask="deleteTask"
         @changeComplete="changeComplete"

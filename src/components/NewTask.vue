@@ -1,6 +1,6 @@
 <template>
   <h1 class="tituloNew">Add a new Task</h1>
-  <div class="addTaskAll">
+  <div class="addTaskAll onlyMobile">
     <div class="dentroPuzzleAddTaskAll">
       <div v-if="showErrorMessage">
         <p class="error-text">{{ errorMessage }}</p>
@@ -10,6 +10,23 @@
       <button @click="addTask">+</button>
     </div>
   </div>
+  <section class="notMobile addTaskPC">
+    <section class="addHome">
+      <div v-if="showErrorMessage">
+        <p class="error-text">{{ errorMessage }}</p>
+      </div>
+      <div v-if="showCorrectMessage">
+        <p class="error-text">{{ correctMessage }}</p>
+      </div>
+    </section>
+    <div class="addTaskPcInputs addTaskPcInputsTaks">
+      <input type="text" placeholder="Título" v-model="name" />
+      <input type="text" placeholder="Descripción..." v-model="description" />
+      <div class="addTaskButton">
+        <button @click="addTask">+ Add Taks</button>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script setup>
