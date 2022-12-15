@@ -500,10 +500,10 @@ input:checked + .slider:before {
 
 @media (min-width: 992px) {
   body {
-    background-image: url(/src/assets/img/backgroundPuzzleFooter.png);
+    /* background-image: url(/src/assets/img/backgroundPuzzleFooter.png);
     background-size: 150%;
-    background-position-y: -15vh;
-    background-attachment: fixed;
+    background-position-y: -15vh; */
+    background: none;
   }
   #app {
     height: 100vh;
@@ -523,6 +523,10 @@ input:checked + .slider:before {
     width: 100vw;
     flex-direction: row-reverse;
     justify-content: space-evenly;
+
+    background-image: url(/src/assets/img/backgroundPuzzleFooter.png);
+    background-size: 100%;
+    background-position-y: -12vh;
   }
 
   .navPC > div {
@@ -677,6 +681,53 @@ input:checked + .slider:before {
   .tituloProfile {
     margin-top: 0;
   }
+  /* TIC TAC TOC */
+  .table {
+    width: 35vw;
+    height: 50vh;
+    position: absolute;
+    top: 15rem;
+    left: 45rem;
+  }
+
+  .row {
+    background-color: #eee;
+  }
+
+  td {
+    width: 25%;
+    height: 25%;
+    border: 5px solid black;
+    text-align: center;
+    font-size: 30px;
+    color: #800000;
+  }
+  /* td:hover {
+    background-color: #6c7558;
+  } */
+
+  hr {
+    width: 45%;
+    margin: auto;
+    left: 27%;
+    top: 50%;
+    position: absolute;
+    border: 1px solid black;
+  }
+
+  #button_id {
+    position: absolute;
+    top: 90%;
+    left: 37%;
+    width: 25%;
+    height: 8%;
+    font-size: 20px;
+    background-color: #e4e1ab;
+    border-color: #f1e717;
+    font-style: bold;
+    box-shadow: none;
+  }
+
   /* Sign */
   .addTaskAll {
     background: none;
