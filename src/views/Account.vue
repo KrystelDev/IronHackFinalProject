@@ -204,6 +204,7 @@ const exito = () => {
     }
     if (i == 8) {
       console.log("Empate!!!");
+      getReset();
     }
   }
 };
