@@ -406,6 +406,56 @@ input:checked + .slider:before {
   padding: 0 1rem 1rem;
 }
 
+/* trash */
+.btn-delete {
+  background-color: white;
+  width: 60px;
+  height: 34px;
+  border-radius: 34px;
+  position: relative;
+  display: inline-block;
+}
+.btn-delete:hover {
+  background-color: red;
+}
+.noVer {
+  display: none;
+}
+.siVer {
+  color: red;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 22%;
+  font-size: xx-large;
+}
+.siVer:hover {
+  color: white;
+}
+.btn-edit {
+  background-color: white;
+  width: 60px;
+  height: 34px;
+  border-radius: 34px;
+  position: relative;
+  display: inline-block;
+}
+.btn-edit:hover {
+  background-color: green;
+}
+.edit {
+  color: green;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 22%;
+  font-size: xx-large;
+}
+.edit:hover {
+  color: white;
+}
+/* fin trash */
+
 .editProfile {
   transition-duration: 0.4s;
   background: none;
@@ -684,6 +734,7 @@ input:checked + .slider:before {
     right: 1rem;
     max-width: 65vw;
   }
+
   /* Profile */
   .tituloProfile {
     margin-top: 0;

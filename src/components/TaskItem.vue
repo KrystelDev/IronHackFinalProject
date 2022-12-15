@@ -15,8 +15,14 @@
       />
       <span class="slider round"></span>
     </label>
-    <button @click="deleteTask">Delete {{ task.title }}</button>
-    <button @click="changeEdit">Edit</button>
+    <button @click="deleteTask" class="btn-delete">
+      <iconify-icon icon="mdi:delete" :class="siNo"></iconify-icon>
+      <iconify-icon icon="mdi:delete-empty" :class="noSi"></iconify-icon>
+    </button>
+
+    <button @click="changeEdit" class="btn-edit">
+      <iconify-icon icon="typcn:edit" class="edit"></iconify-icon>
+    </button>
   </div>
 </template>
 
@@ -27,6 +33,19 @@ import { useTaskStore } from "../stores/task";
 let title = ref(props.task.title);
 let description = ref(props.task.description);
 let editTask = ref(false);
+
+//clase Trash
+let siNo = ref("siVer");
+let noSi = ref("noVer");
+
+const cliskTrash = () => {
+  siNo.value = "noVer";
+  noSi.value = "siVer";
+  setTimeout(() => {
+    siNo.value = "siVer";
+    noSi.value = "noVer";
+  }, 2000);
+};
 
 const changeEdit = () => {
   editTask.value = !editTask.value;
@@ -42,6 +61,7 @@ const props = defineProps({
 const emit = defineEmits(["deleteTask", "changeComplete", "changeTask"]);
 
 const deleteTask = async () => {
+  cliskTrash();
   await taskStore.deleteTask(props.task.id);
   emit("deleteTask");
 };
