@@ -122,7 +122,6 @@ const getTasks = async () => {
   );
 
   conversor();
-
   if (tasksInComplete.length != 0) {
     taskPendienteActive.value = tasksInComplete[i.value];
   }

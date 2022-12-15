@@ -299,7 +299,7 @@ input:checked + .slider:before {
   border-radius: 4px;
 }
 
-.footer {
+.footerMobile {
   background-image: url(/src/assets/img/backgroundPuzzleFooter.png);
   background-size: 131vw 28vh;
   background-position: bottom;
@@ -311,18 +311,18 @@ input:checked + .slider:before {
   height: 6rem;
 }
 
-.footer > a {
+.footerMobile > a {
   text-decoration: none;
   font-weight: 700;
   font-size: x-large;
 }
 
-.footer > button {
+.footerMobile > button {
   background: none;
   border: none;
 }
 
-.footer > button > img {
+.footerMobile > button > img {
   width: 20vw;
 }
 
@@ -330,7 +330,7 @@ input:checked + .slider:before {
   width: 100vw;
   text-align: center;
   justify-content: space-around;
-  margin-bottom: -5rem;
+  margin-bottom: -6rem;
 }
 
 /* Account View */
@@ -644,7 +644,7 @@ input:checked + .slider:before {
     font-weight: 600;
     text-shadow: 0.2rem 0.1rem 0.3rem #ccc;
     position: relative;
-    top: -7.8rem;
+    top: -6.5rem;
     left: -23rem;
   }
 
@@ -795,10 +795,10 @@ input:checked + .slider:before {
   }
 
   /* TIC TAC TOC */
-  .header {
+  .headerTicTacToe {
     position: absolute;
     top: 10rem;
-    left: 54rem;
+    left: 52rem;
   }
   .table {
     width: 35vw;
@@ -847,6 +847,14 @@ input:checked + .slider:before {
     color: white;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
       0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .CAlert {
+    width: 21rem;
+    position: absolute;
+    left: 22rem;
+    top: 20rem;
+    text-align: justify;
   }
 
   /* Sign */

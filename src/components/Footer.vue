@@ -1,5 +1,5 @@
 <template>
-  <nav class="footer">
+  <nav class="footerMobile">
     <router-link to="/">Home</router-link>
     <router-link to="/tasks">Tascas</router-link>
     <router-link to="/account">{{ props.username }}</router-link>

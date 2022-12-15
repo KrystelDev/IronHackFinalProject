@@ -23,27 +23,42 @@
       </button>
     </div>
     <section class="notMobile">
-      <h1 class="header">TIC TOC TOE</h1>
-      <table class="table">
-        <tr class="row">
-          <td @click="tictactoc(0)">{{ celda1a }}</td>
-          <td @click="tictactoc(1)">{{ celda2a }}</td>
-          <td @click="tictactoc(2)">{{ celda3a }}</td>
-        </tr>
-        <tr class="row">
-          <td @click="tictactoc(3)">{{ celda1b }}</td>
-          <td @click="tictactoc(4)">{{ celda2b }}</td>
-          <td @click="tictactoc(5)">{{ celda3b }}</td>
-        </tr>
-        <tr class="row">
-          <td @click="tictactoc(6)">{{ celda1c }}</td>
-          <td @click="tictactoc(7)">{{ celda2c }}</td>
-          <td @click="tictactoc(8)">{{ celda3c }}</td>
-        </tr>
-      </table>
-      <button id="button_id" type="reset" value="Reset" @click="getReset()">
-        <b> RESET </b>
-      </button>
+      <div>
+        <CAlert color="success" dismissible :visible="visible" class="CAlert">
+          <CAlertHeading>
+            🏆Gana el jugador {{ jugadorWiner }} 🏆</CAlertHeading
+          >
+          <p>😎Aww yeah!! 🎉Felicidades!!!</p>
+          <p class="mb-0">
+            🏁 El breve descanso recarga las pilas, y marcar unos tempos de
+            productividad y otros de descanso nos da una sensación de logro y
+            querer seguir hasta completar la jornada.
+          </p>
+        </CAlert>
+      </div>
+      <div>
+        <h1 class="headerTicTacToe">TIC TOC TOE</h1>
+        <table class="table">
+          <tr>
+            <td @click="tictactoc(0)">{{ celda1a }}</td>
+            <td @click="tictactoc(1)">{{ celda2a }}</td>
+            <td @click="tictactoc(2)">{{ celda3a }}</td>
+          </tr>
+          <tr>
+            <td @click="tictactoc(3)">{{ celda1b }}</td>
+            <td @click="tictactoc(4)">{{ celda2b }}</td>
+            <td @click="tictactoc(5)">{{ celda3b }}</td>
+          </tr>
+          <tr>
+            <td @click="tictactoc(6)">{{ celda1c }}</td>
+            <td @click="tictactoc(7)">{{ celda2c }}</td>
+            <td @click="tictactoc(8)">{{ celda3c }}</td>
+          </tr>
+        </table>
+        <button id="button_id" type="reset" value="Reset" @click="getReset()">
+          <b> RESET </b>
+        </button>
+      </div>
     </section>
     <button class="editProfile" @click="changeEditPerfil">Edit</button>
     <Footer :username="username" class="onlyMobile positionBottom" />
@@ -55,8 +70,10 @@ import { ref } from "vue";
 import Nav from "../components/Nav.vue";
 import Footer from "../components/Footer.vue";
 import { useUserStore } from "../stores/user";
-
+// iconos
 import { Icon } from "@iconify/vue";
+// aler winner
+import { CAlert, CAlertHeading } from "@coreui/vue";
 
 const userStore = useUserStore();
 
@@ -134,6 +151,8 @@ let celda3c = ref("");
 // Calcular resultado despues de la primera posiblidad de exito:
 
 //Casos de Exito
+let visible = ref(false);
+let jugadorWiner = ref("");
 const exito = () => {
   if (i > 3) {
     if (
@@ -147,10 +166,12 @@ const exito = () => {
         celda1b.value == celda1c.value &&
         celda1a.value != "")
     ) {
+      jugadorWiner.value = celda1a.value;
       console.log("El jugador", celda1a.value, "ganaaaa!!");
-      setTimeout(() => {
-        getReset();
-      });
+      (visible.value = true),
+        setTimeout(() => {
+          (visible.value = false), getReset();
+        }, 5000);
     } else if (
       (celda1b.value == celda2b.value &&
         celda2b.value == celda3b.value &&
@@ -162,10 +183,12 @@ const exito = () => {
         celda2b.value == celda1c.value &&
         celda3a.value != "")
     ) {
+      jugadorWiner.value = celda2b.value;
       console.log("El jugador", celda2b.value, "ganaaaa!!");
-      setTimeout(() => {
-        getReset();
-      }, 5000);
+      (visible.value = true),
+        setTimeout(() => {
+          (visible.value = false), getReset();
+        }, 5000);
     } else if (
       (celda3a.value == celda3b.value &&
         celda3b.value == celda3c.value &&
@@ -177,10 +200,12 @@ const exito = () => {
         celda2c.value == celda3c.value &&
         celda1c.value != "")
     ) {
+      jugadorWiner.value = celda3c.value;
       console.log("El jugador", celda3c.value, "ganaaaa!!");
-      setTimeout(() => {
-        getReset();
-      }, 5000);
+      (visible.value = true),
+        setTimeout(() => {
+          (visible.value = false), getReset();
+        }, 5000);
     }
 
     if (i == 8) {
