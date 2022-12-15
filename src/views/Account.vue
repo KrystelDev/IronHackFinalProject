@@ -10,15 +10,16 @@
           : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'
       "
       alt="Profile picture"
+      class="profilePicture"
     />
-    <div v-show="editPerfil">
+    <div class="editable" v-show="editPerfil">
       <label for="name">Nombre</label>
       <input type="text" v-model="username" />
       <label for="avatar">Avatar</label>
       <input type="text" v-model="avatar_url" />
       <button @click="changePerfil">Save</button>
     </div>
-    <section>
+    <section class="notMobile">
       <h1 class="header">TIC TOC TOE</h1>
       <table class="table">
         <tr class="row">

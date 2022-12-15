@@ -34,12 +34,6 @@ body {
   background-position-y: -15vh;
 }
 
-/* Nav Component */
-
-/* SignIn Component */
-
-/* SignUp Component */
-
 /* ************* HOME View ************* */
 
 .wrapper {
@@ -431,6 +425,19 @@ input:checked + .slider:before {
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
+.editable {
+  display: flex;
+  flex-direction: column;
+}
+.editable input {
+  margin: 1vh 1vw;
+  color: #f44708;
+  font-size: large;
+  height: 2rem;
+  border: 2px solid #4caf50;
+  border-radius: 4px;
+}
+
 /* SIGN UP */
 .header-description {
   margin-top: 8rem;
@@ -680,8 +687,37 @@ input:checked + .slider:before {
   /* Profile */
   .tituloProfile {
     margin-top: 0;
+    position: absolute;
+    left: 3rem;
+    top: 15rem;
+    font-size: xxx-large;
   }
+  .profilePicture {
+    position: absolute;
+    left: 3rem;
+    top: 20rem;
+    width: 15rem;
+  }
+  .editProfile {
+    position: absolute;
+    left: 5rem;
+    top: 35rem;
+    font-size: xx-large;
+    width: 14rem;
+  }
+
+  .editable {
+    position: absolute;
+    top: 23rem;
+    left: 19rem;
+  }
+
   /* TIC TAC TOC */
+  .header {
+    position: absolute;
+    top: 10rem;
+    left: 54rem;
+  }
   .table {
     width: 35vw;
     height: 50vh;
@@ -717,14 +753,13 @@ input:checked + .slider:before {
 
   #button_id {
     position: absolute;
-    top: 90%;
-    left: 37%;
-    width: 25%;
+    top: 40rem;
+    left: 45rem;
+    width: 28rem;
     height: 8%;
     font-size: 20px;
     background-color: #e4e1ab;
     border-color: #f1e717;
-    font-style: bold;
     box-shadow: none;
   }
 
