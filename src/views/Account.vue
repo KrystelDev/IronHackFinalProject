@@ -96,7 +96,7 @@ const changePerfil = async () => {
 
 // TIC TAC TOC
 let i = 0;
-let arr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+let arr = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 
 let celda1a = ref("");
 let celda2a = ref("");
@@ -114,21 +114,96 @@ let celda3c = ref("");
 
 //Casos de Exito
 const exito = () => {
-  console.log("turno", i);
-
   if (i > 3) {
+    // if (
+    //   celda1a.value == celda2a.value &&
+    //   celda2a.value == celda3a.value &&
+    //   celda1a.value != ""
+    // ) {
+    //   console.log("soy el raro1");
+    // }
+    // if (
+    //   celda1b.value == celda2b.value &&
+    //   celda2b.value == celda3b.value &&
+    //   celda1b.value != ""
+    // ) {
+    //   console.log("soy el raro2");
+    // }
+    // if (
+    //   celda1c.value == celda2c.value &&
+    //   celda2c.value == celda3c.value &&
+    //   celda1c.value != ""
+    // ) {
+    //   console.log("soy el raro3");
+    // }
+    // if (
+    //   celda1a.value == celda2b.value &&
+    //   celda2b.value == celda3c.value &&
+    //   celda1a.value != ""
+    // ) {
+    //   console.log("soy el raro4");
+    // }
+    // if (
+    //   celda2a.value == celda2b.value &&
+    //   celda2b.value == celda2c.value &&
+    //   celda2a.value != ""
+    // ) {
+    //   console.log("soy el raro5");
+    // }
+    // if (
+    //   celda3a.value == celda3b.value &&
+    //   celda3b.value == celda3c.value &&
+    //   celda3a.value != ""
+    // ) {
+    //   console.log("soy el raro6");
+    // }
+    // if (
+    //   celda3a.value == celda2b.value &&
+    //   celda2b.value == celda1c.value &&
+    //   celda3a.value != ""
+    // ) {
+    //   console.log("soy el raro7");
+    // }
+    // if (
+    //   celda1a.value == celda1b.value &&
+    //   celda1b.value == celda1c.value &&
+    //   celda1a.value != ""
+    // ) {
+    //   console.log("soy el raro8");
+    // }
     if (
-      (celda1a.value == celda2a.value && celda2a.value == celda3a.value) ||
-      (celda1b.value == celda2b.value && celda2b.value == celda3b.value) ||
-      (celda1c.value == celda2c.value && celda2c.value == celda3c.value) ||
-      (celda1a.value == celda1a.value && celda1a.value == celda1a.value) ||
-      (celda2a.value == celda2a.value && celda2a.value == celda2a.value) ||
-      (celda3a.value == celda3a.value && celda3a.value == celda3a.value)
+      (celda1a.value == celda2a.value &&
+        celda2a.value == celda3a.value &&
+        celda1a.value != "") ||
+      (celda1b.value == celda2b.value &&
+        celda2b.value == celda3b.value &&
+        celda1b.value != "") ||
+      (celda1c.value == celda2c.value &&
+        celda2c.value == celda3c.value &&
+        celda1c.value != "") ||
+      (celda1a.value == celda2b.value &&
+        celda2b.value == celda3c.value &&
+        celda1a.value != "") ||
+      (celda2a.value == celda2b.value &&
+        celda2b.value == celda2c.value &&
+        celda2a.value != "") ||
+      (celda3a.value == celda3b.value &&
+        celda3b.value == celda3c.value &&
+        celda3a.value != "") ||
+      (celda3a.value == celda2b.value &&
+        celda2b.value == celda1c.value &&
+        celda3a.value != "") ||
+      (celda1a.value == celda1b.value &&
+        celda1b.value == celda1c.value &&
+        celda1a.value != "")
     ) {
       console.log("El jugador", celda1a.value, "ganaaaa!!");
       setTimeout(() => {
         getReset();
       }, 5000);
+    }
+    if (i == 8) {
+      console.log("Empate!!!");
     }
   }
 };
@@ -238,6 +313,11 @@ const tictactoc = (num) => {
 };
 
 const getReset = () => {
+  console.log("Entra en reset");
+  console.log(i);
+  console.log(arr);
+  i = 0;
+  arr = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
   celda1a.value = "";
   celda2a.value = "";
   celda3a.value = "";
@@ -247,6 +327,9 @@ const getReset = () => {
   celda1c.value = "";
   celda2c.value = "";
   celda3c.value = "";
+  console.log("Sale de reset");
+  console.log(i);
+  console.log(arr);
 };
 </script>
 

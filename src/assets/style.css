@@ -726,21 +726,14 @@ input:checked + .slider:before {
     left: 45rem;
   }
 
-  .row {
-    background-color: #eee;
-  }
-
   td {
     width: 25%;
     height: 25%;
     border: 5px solid black;
     text-align: center;
-    font-size: 30px;
-    color: #800000;
+    font-size: xxx-large;
+    color: #49166e;
   }
-  /* td:hover {
-    background-color: #6c7558;
-  } */
 
   hr {
     width: 45%;
@@ -757,10 +750,21 @@ input:checked + .slider:before {
     left: 45rem;
     width: 28rem;
     height: 8%;
-    font-size: 20px;
-    background-color: #e4e1ab;
-    border-color: #f1e717;
-    box-shadow: none;
+    font-size: x-large;
+    color: #49166e;
+    transition-duration: 0.4s;
+    background: none;
+    color: #49166e;
+    border: 6px solid #49166e;
+    border-radius: 50%;
+    text-align: center;
+  }
+
+  #button_id:hover {
+    background-color: #49166e;
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+      0 17px 50px 0 rgba(0, 0, 0, 0.19);
   }
 
   /* Sign */
