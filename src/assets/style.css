@@ -13,6 +13,11 @@
   /* outline: 1px solid red; */
 }
 
+p {
+  color: blue;
+  font-size: larger;
+}
+
 #app {
   height: 90vh;
   width: 100vw;
@@ -57,6 +62,7 @@ main {
 #progressBar {
   display: none;
 }
+
 .circleProgres {
   margin-top: 8vh;
 }
@@ -127,7 +133,6 @@ svg {
   background-position-y: 5vh;
   width: -webkit-fill-available;
   justify-content: space-between;
-  margin-top: 2rem;
   margin-right: 0.5rem;
 }
 .tareas {
@@ -646,6 +651,7 @@ input:checked + .slider:before {
     position: relative;
     top: -6.5rem;
     left: -23rem;
+    color: black;
   }
 
   main {
