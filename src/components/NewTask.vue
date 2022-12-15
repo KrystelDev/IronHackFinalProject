@@ -41,9 +41,11 @@ const description = ref("");
 
 // constant to save a variable that holds an initial false boolean value for the errorMessage container that is conditionally displayed depending if the input field is empty
 const showErrorMessage = ref(false);
+const showCorrectMessage = ref(false);
 
 // const constant to save a variable that holds the value of the error message
 const errorMessage = ref(null);
+const correctMessage = ref(null);
 
 const emit = defineEmits(["getTasks"]);
 
@@ -65,8 +67,13 @@ const addTask = async () => {
     await taskStore.addTask(name.value, description.value);
     name.value = "";
     description.value = "";
-
+    showCorrectMessage.value = true;
+    correctMessage.value = "Hemos registrado tu nueva tarea!";
     emit("getTasks");
+    setTimeout(() => {
+      showErrorMessage.value = false;
+      showCorrectMessage.value = false;
+    }, 3000);
   }
 };
 </script>
