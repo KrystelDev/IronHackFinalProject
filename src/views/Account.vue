@@ -35,6 +35,20 @@
             querer seguir hasta completar la jornada.
           </p>
         </CAlert>
+        <CAlert
+          color="primary"
+          dismissible
+          :visible="empate"
+          class="CAlertEmpate"
+        >
+          <CAlertHeading> 🏆Ambos jugadores ganan 🏆</CAlertHeading>
+          <p>😎 Que partida más reñida!!!</p>
+          <p class="mb-0">
+            🏁 El breve descanso recarga las pilas, y marcar unos tempos de
+            productividad y otros de descanso nos da una sensación de logro y
+            querer seguir hasta completar la jornada.
+          </p>
+        </CAlert>
       </div>
       <div>
         <h1 class="headerTicTacToe">TIC TOC TOE</h1>
@@ -152,6 +166,7 @@ let celda3c = ref("");
 
 //Casos de Exito
 let visible = ref(false);
+let empate = ref(false);
 let jugadorWiner = ref("");
 const exito = () => {
   if (i > 3) {
@@ -167,7 +182,6 @@ const exito = () => {
         celda1a.value != "")
     ) {
       jugadorWiner.value = celda1a.value;
-      console.log("El jugador", celda1a.value, "ganaaaa!!");
       (visible.value = true),
         setTimeout(() => {
           (visible.value = false), getReset();
@@ -183,8 +197,6 @@ const exito = () => {
         celda2b.value == celda1c.value &&
         celda3a.value != "")
     ) {
-      jugadorWiner.value = celda2b.value;
-      console.log("El jugador", celda2b.value, "ganaaaa!!");
       (visible.value = true),
         setTimeout(() => {
           (visible.value = false), getReset();
@@ -201,7 +213,6 @@ const exito = () => {
         celda1c.value != "")
     ) {
       jugadorWiner.value = celda3c.value;
-      console.log("El jugador", celda3c.value, "ganaaaa!!");
       (visible.value = true),
         setTimeout(() => {
           (visible.value = false), getReset();
@@ -209,8 +220,10 @@ const exito = () => {
     }
 
     if (i == 8) {
-      console.log("Empate!!!");
-      getReset();
+      (empate.value = true),
+        setTimeout(() => {
+          (empate.value = false), getReset();
+        }, 5000);
     }
   }
 };

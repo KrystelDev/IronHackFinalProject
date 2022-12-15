@@ -202,7 +202,7 @@ const addTask = async () => {
     // Primero comprobamos que ningún campo del input esté vacío y lanzamos el error con un timeout para informar al user.
 
     showErrorMessage.value = true;
-    errorMessage.value = "The task title or description is empty";
+    errorMessage.value = "El título o la descripción estan vacios.";
   } else {
     // Aquí mandamos los valores a la store para crear la nueva Task.
     changeaddNewTask();

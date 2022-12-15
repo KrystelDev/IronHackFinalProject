@@ -763,7 +763,7 @@ input:checked + .slider:before {
     position: absolute;
     top: 17rem;
     right: 1rem;
-    max-width: 65vw;
+    width: 65vw;
   }
 
   /* Profile */
@@ -853,6 +853,13 @@ input:checked + .slider:before {
     width: 21rem;
     position: absolute;
     left: 22rem;
+    top: 20rem;
+    text-align: justify;
+  }
+  .CAlertEmpate {
+    width: 25rem;
+    position: absolute;
+    left: 19rem;
     top: 20rem;
     text-align: justify;
   }
