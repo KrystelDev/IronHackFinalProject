@@ -411,6 +411,7 @@ input:checked + .slider:before {
   background-color: white;
   width: 60px;
   height: 34px;
+  border: 1px solid red;
   border-radius: 34px;
   position: relative;
   display: inline-block;
@@ -436,6 +437,7 @@ input:checked + .slider:before {
   background-color: white;
   width: 60px;
   height: 34px;
+  border: 1px solid green;
   border-radius: 34px;
   position: relative;
   display: inline-block;
@@ -452,6 +454,30 @@ input:checked + .slider:before {
   font-size: xx-large;
 }
 .edit:hover {
+  color: white;
+}
+.btn-save {
+  background-color: white;
+  width: 60px;
+  height: 34px;
+  border: 1px solid blue;
+  border-radius: 34px;
+  position: relative;
+  right: -15rem;
+  display: inline-block;
+}
+.btn-save:hover {
+  background-color: blue;
+}
+.siSave {
+  color: blue;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 22%;
+  font-size: xx-large;
+}
+.siSave:hover {
   color: white;
 }
 /* fin trash */
@@ -580,7 +606,6 @@ input:checked + .slider:before {
     width: 100vw;
     flex-direction: row-reverse;
     justify-content: space-evenly;
-
     background-image: url(/src/assets/img/backgroundPuzzleFooter.png);
     background-size: 100%;
     background-position-y: -12vh;
@@ -633,6 +658,12 @@ input:checked + .slider:before {
     display: flex;
     flex-direction: column;
   }
+  .addTaskPCTask {
+    position: absolute;
+    top: 35rem;
+    left: 8rem;
+  }
+
   .addTaskPcInputs {
     align-items: center;
     flex-direction: column;
@@ -757,7 +788,7 @@ input:checked + .slider:before {
     width: 14rem;
   }
 
-  .editable {
+  .editablePerfil {
     position: absolute;
     top: 23rem;
     left: 19rem;

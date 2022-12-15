@@ -10,13 +10,13 @@
       <button @click="addTask">+</button>
     </div>
   </div>
-  <section class="notMobile addTaskPC">
+  <section class="notMobile addTaskPCTask">
     <section class="addHome">
-      <div v-if="showErrorMessage">
+      <div v-if="showErrorMessage" class="box-error-text">
         <p class="error-text">{{ errorMessage }}</p>
       </div>
       <div v-if="showCorrectMessage">
-        <p class="error-text">{{ correctMessage }}</p>
+        <p class="corret-text">{{ correctMessage }}</p>
       </div>
     </section>
     <div class="addTaskPcInputs addTaskPcInputsTaks">

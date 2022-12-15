@@ -12,12 +12,15 @@
       alt="Profile picture"
       class="profilePicture"
     />
-    <div class="editable" v-show="editPerfil">
+    <div class="editable editablePerfil" v-show="editPerfil">
       <label for="name">Nombre</label>
       <input type="text" v-model="username" />
       <label for="avatar">Avatar</label>
       <input type="text" v-model="avatar_url" />
-      <button @click="changePerfil">Save</button>
+      <button @click="changePerfil" class="btn-save">
+        <Icon icon="iconoir:save-floppy-disk" :class="siSave"></Icon>
+        <Icon icon="iconoir:save-action-floppy" :class="awaitSave"></Icon>
+      </button>
     </div>
     <section class="notMobile">
       <h1 class="header">TIC TOC TOE</h1>
@@ -53,6 +56,8 @@ import Nav from "../components/Nav.vue";
 import Footer from "../components/Footer.vue";
 import { useUserStore } from "../stores/user";
 
+import { Icon } from "@iconify/vue";
+
 const userStore = useUserStore();
 
 // Variable para guardar el perfil de supabase
@@ -79,6 +84,19 @@ const getProfile = async () => {
 getProfile();
 
 //Editar Perfil
+//Clase Save
+let siSave = ref("siSave");
+let awaitSave = ref("noVer");
+
+const clickSave = () => {
+  siSave.value = "noVer";
+  awaitSave.value = "siSave";
+  setTimeout(() => {
+    siSave.value = "siSave";
+    awaitSave.value = "noVer";
+  }, 2000);
+};
+
 let editPerfil = ref(false);
 
 const changeEditPerfil = () => {
@@ -86,7 +104,10 @@ const changeEditPerfil = () => {
 };
 
 const changePerfil = async () => {
-  changeEditPerfil();
+  clickSave();
+  setTimeout(() => {
+    changeEditPerfil();
+  }, 1000);
   await userStore.changeProfiles(
     username.value,
     avatar_url.value,
@@ -115,84 +136,13 @@ let celda3c = ref("");
 //Casos de Exito
 const exito = () => {
   if (i > 3) {
-    // if (
-    //   celda1a.value == celda2a.value &&
-    //   celda2a.value == celda3a.value &&
-    //   celda1a.value != ""
-    // ) {
-    //   console.log("soy el raro1");
-    // }
-    // if (
-    //   celda1b.value == celda2b.value &&
-    //   celda2b.value == celda3b.value &&
-    //   celda1b.value != ""
-    // ) {
-    //   console.log("soy el raro2");
-    // }
-    // if (
-    //   celda1c.value == celda2c.value &&
-    //   celda2c.value == celda3c.value &&
-    //   celda1c.value != ""
-    // ) {
-    //   console.log("soy el raro3");
-    // }
-    // if (
-    //   celda1a.value == celda2b.value &&
-    //   celda2b.value == celda3c.value &&
-    //   celda1a.value != ""
-    // ) {
-    //   console.log("soy el raro4");
-    // }
-    // if (
-    //   celda2a.value == celda2b.value &&
-    //   celda2b.value == celda2c.value &&
-    //   celda2a.value != ""
-    // ) {
-    //   console.log("soy el raro5");
-    // }
-    // if (
-    //   celda3a.value == celda3b.value &&
-    //   celda3b.value == celda3c.value &&
-    //   celda3a.value != ""
-    // ) {
-    //   console.log("soy el raro6");
-    // }
-    // if (
-    //   celda3a.value == celda2b.value &&
-    //   celda2b.value == celda1c.value &&
-    //   celda3a.value != ""
-    // ) {
-    //   console.log("soy el raro7");
-    // }
-    // if (
-    //   celda1a.value == celda1b.value &&
-    //   celda1b.value == celda1c.value &&
-    //   celda1a.value != ""
-    // ) {
-    //   console.log("soy el raro8");
-    // }
     if (
       (celda1a.value == celda2a.value &&
         celda2a.value == celda3a.value &&
         celda1a.value != "") ||
-      (celda1b.value == celda2b.value &&
-        celda2b.value == celda3b.value &&
-        celda1b.value != "") ||
-      (celda1c.value == celda2c.value &&
-        celda2c.value == celda3c.value &&
-        celda1c.value != "") ||
       (celda1a.value == celda2b.value &&
         celda2b.value == celda3c.value &&
         celda1a.value != "") ||
-      (celda2a.value == celda2b.value &&
-        celda2b.value == celda2c.value &&
-        celda2a.value != "") ||
-      (celda3a.value == celda3b.value &&
-        celda3b.value == celda3c.value &&
-        celda3a.value != "") ||
-      (celda3a.value == celda2b.value &&
-        celda2b.value == celda1c.value &&
-        celda3a.value != "") ||
       (celda1a.value == celda1b.value &&
         celda1b.value == celda1c.value &&
         celda1a.value != "")
@@ -200,8 +150,39 @@ const exito = () => {
       console.log("El jugador", celda1a.value, "ganaaaa!!");
       setTimeout(() => {
         getReset();
+      });
+    } else if (
+      (celda1b.value == celda2b.value &&
+        celda2b.value == celda3b.value &&
+        celda1b.value != "") ||
+      (celda2a.value == celda2b.value &&
+        celda2b.value == celda2c.value &&
+        celda2a.value != "") ||
+      (celda3a.value == celda2b.value &&
+        celda2b.value == celda1c.value &&
+        celda3a.value != "")
+    ) {
+      console.log("El jugador", celda2b.value, "ganaaaa!!");
+      setTimeout(() => {
+        getReset();
+      }, 5000);
+    } else if (
+      (celda3a.value == celda3b.value &&
+        celda3b.value == celda3c.value &&
+        celda3a.value != "") ||
+      (celda1c.value == celda2c.value &&
+        celda2c.value == celda3c.value &&
+        celda1c.value != "") ||
+      (celda1c.value == celda2c.value &&
+        celda2c.value == celda3c.value &&
+        celda1c.value != "")
+    ) {
+      console.log("El jugador", celda3c.value, "ganaaaa!!");
+      setTimeout(() => {
+        getReset();
       }, 5000);
     }
+
     if (i == 8) {
       console.log("Empate!!!");
       getReset();

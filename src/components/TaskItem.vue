@@ -2,10 +2,13 @@
   <div>
     <p>Titule: {{ task.title }}</p>
     <p>Description: {{ task.description }}</p>
-    <div v-show="editTask">
+    <div v-show="editTask" class="editable">
       <input type="text" v-model="title" />
       <input type="text" v-model="description" />
-      <button @click="changeTask">Save</button>
+      <button @click="changeTask" class="btn-save">
+        <Icon icon="iconoir:save-floppy-disk" :class="siSave"></Icon>
+        <Icon icon="iconoir:save-action-floppy" :class="awaitSave"></Icon>
+      </button>
     </div>
     <label class="switch">
       <input
@@ -16,12 +19,12 @@
       <span class="slider round"></span>
     </label>
     <button @click="deleteTask" class="btn-delete">
-      <iconify-icon icon="mdi:delete" :class="siNo"></iconify-icon>
-      <iconify-icon icon="mdi:delete-empty" :class="noSi"></iconify-icon>
+      <Icon icon="mdi:delete" :class="siNo"></Icon>
+      <Icon icon="mdi:delete-empty" :class="noSi"></Icon>
     </button>
 
     <button @click="changeEdit" class="btn-edit">
-      <iconify-icon icon="typcn:edit" class="edit"></iconify-icon>
+      <Icon icon="typcn:edit" class="edit"></Icon>
     </button>
   </div>
 </template>
@@ -29,6 +32,8 @@
 <script setup>
 import { ref } from "vue";
 import { useTaskStore } from "../stores/task";
+
+import { Icon } from "@iconify/vue";
 
 let title = ref(props.task.title);
 let description = ref(props.task.description);
@@ -44,6 +49,19 @@ const cliskTrash = () => {
   setTimeout(() => {
     siNo.value = "siVer";
     noSi.value = "noVer";
+  }, 2000);
+};
+
+//Clase Save
+let siSave = ref("siSave");
+let awaitSave = ref("noVer");
+
+const clickSave = () => {
+  siSave.value = "noVer";
+  awaitSave.value = "siSave";
+  setTimeout(() => {
+    siSave.value = "siSave";
+    awaitSave.value = "noVer";
   }, 2000);
 };
 
@@ -72,7 +90,10 @@ const changeComplete = async () => {
 };
 
 const changeTask = async () => {
-  changeEdit();
+  clickSave();
+  setTimeout(() => {
+    changeEdit();
+  }, 1000);
   await taskStore.changeTask(title.value, description.value, props.task.id);
   emit("changeTask");
 };
