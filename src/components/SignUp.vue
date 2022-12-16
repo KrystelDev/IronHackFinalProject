@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper singFondo">
     <h1 class="header-description">Registrarse</h1>
     <p>La pieza clave es la organización</p>
 

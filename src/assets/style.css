@@ -871,6 +871,12 @@ input:checked + .slider:before {
   }
 
   /* Sign */
+  .singFondo {
+    background-image: url(./img/backgroundPuzzleFooter.png);
+    background-size: 170%;
+    background-repeat: no-repeat;
+    background-position-y: -15vh;
+  }
   .addTaskAll {
     background: none;
     min-height: initial;

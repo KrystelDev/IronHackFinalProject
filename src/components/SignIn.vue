@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper singFondo">
     <h1 class="header-description">Conectarse</h1>
     <p>Este puzzle no se va a montar solo.</p>
 
