@@ -12,11 +12,11 @@ Fecha: 16/12/2022
 <table>
     <tr>
     <td>
-        <img src="./src/assets/imgs/pc.png" 
+        <img src="src/assets/img/pc.png" 
         width="400rem" />
     </td>
     <td>
-        <img src="./src/assets/imgs/mobile.png" 
+        <img src="src/assets/img/mobile.png" 
         width="200rem" />
     </td>
     </tr>
