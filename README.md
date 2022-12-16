@@ -1,13 +1,26 @@
 # [](https://github.com/zantonz/final-project/blob/master/README.md)ToDo App
 
-[Click para acceder a la web](https://todo-zantonz.vercel.app/)
+[Click para acceder a la web](https://iron-hack-final-project.vercel.app)
 
-Autor: Anton Zyrianov
-Fecha: 25/08/2022
+Autor: Krystel Rodríguez
+Fecha: 16/12/2022
 
 ## Descripcion
 
-![Pagina Home](https://i.postimg.cc/m2rV83dV/Captura-de-pantalla-2022-08-25-a-las-10-38-46.png)
+##### Previews:
+
+<table>
+    <tr>
+    <td>
+        <img src="./src/assets/imgs/pc.png" 
+        width="400rem" />
+    </td>
+    <td>
+        <img src="./src/assets/imgs/mobile.png" 
+        width="200rem" />
+    </td>
+    </tr>
+</table>
 
 Se trata del proyecto final realizado durante el bootcamp de Front End Development en el Ironhack que consiste en una pagina web que te permite gestionar tus tareas.
 
@@ -36,12 +49,10 @@ Es una aplicacion creada con Vue.js que permite a usuarios crear una cuenta, añ
 - Añadir funcionalidad al boton de cambiar el nombre que permite al usuario cambiar el titulo de la tarea
 - Añadir funcionalidad al boton de borrar la tarea
 - Implemntar la funcionalidad de ocultar/mostrar contraseña a la hora de hacer Sign In
-- Adaptar el diseño a la version movil, en este caso solo hay solo media query que se activa a partir de 747px para abajo
-- Implementar menu hamburguesa para versiones moviles
-- Cuando el usuario clique en el boton de toggle y cambie el estado de la tarea a "Hecha", esta se tacha
+- Adaptar el diseño a la version movil.
+- Cuando el usuario clique en el boton de toggle y cambie el estado de la tarea de completa a incompleta.
 - Subir el proyecto a Vercel para que este disponible para todo el mundo
-- Comenzar con la parte del perfil de usuario ~~(opcional)~~
-- Repaso a la pagina y todas sus funcionalidades
-- Preparar el README con la descripcion del proyecto
-- Preparar la presentacion del proyecto
-- Implementar funcionalidad del Timer
+- Comenzar con la parte del perfil de usuario.
+- Repaso a la pagina y todas sus funcionalidades.
+- Preparar el README con la descripcion del proyecto.
+- Preparar la presentacion del proyecto.
